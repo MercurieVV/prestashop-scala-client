@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/MercurieVV/prestashop-scala-client.svg)](https://jitpack.io/#MercurieVV/prestashop-scala-client)
+
 prestasac - a Scala library for accessing the PrestaShop Web Service.
 
 prestasac (PrestaShop Scala API Client) allows you to access the PrestaShop Web Service from Scala. Learn more about the PrestaShop Web Service from the [Official Documentation](http://wiki.prestashop.com/display/enEN/Using+the+REST+webservice) ([PDF version](http://wiki.prestashop.com/download/attachments/720902/CRUD+Tutorial+EN.pdf?version=1&modificationDate=1301486324000)).
