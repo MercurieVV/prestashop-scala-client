@@ -16,7 +16,7 @@ package co.orderly.prestasac.representations
 import java.lang.{Integer => JInteger}
 
 // Scala
-import scala.reflect.BeanProperty
+import scala.beans.BeanProperty
 
 // JAXB
 import javax.xml.bind.annotation._

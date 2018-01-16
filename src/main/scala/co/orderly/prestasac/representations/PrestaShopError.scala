@@ -16,9 +16,10 @@ package co.orderly.prestasac.representations
 import java.util.{Collection => JCollection}
 import java.util.{List => JList}
 
+import scala.beans.BeanProperty
+
 // Scala
 import scala.collection.mutable.{Buffer, ArrayBuffer}
-import scala.reflect.BeanProperty
 import scala.collection.JavaConversions._
 
 // JAXB

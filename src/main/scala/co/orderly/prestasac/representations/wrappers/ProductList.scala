@@ -15,10 +15,11 @@ package co.orderly.prestasac.representations.wrappers
 // Java
 import java.util.{List => JList}
 
+import scala.beans.BeanProperty
+
 // Scala
 import scala.collection.mutable.{Buffer, ArrayBuffer}
 import scala.collection.JavaConversions._
-import scala.reflect.BeanProperty
 
 // JAXB
 import javax.xml.bind.annotation._

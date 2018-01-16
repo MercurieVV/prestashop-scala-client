@@ -18,7 +18,7 @@ import java.lang.{Integer => JLong}
 import java.util.{Date => JDate}
 
 // Scala
-import scala.reflect.BeanProperty
+import scala.beans.BeanProperty
 
 // JAXB
 import javax.xml.bind.annotation._

@@ -22,7 +22,7 @@ import java.util.{List => JList}
 
 // Scala
 import scala.collection.mutable.{Buffer, ArrayBuffer}
-import scala.reflect.BeanProperty
+import scala.beans.BeanProperty
 import scala.collection.JavaConversions._
 
 // JAXB

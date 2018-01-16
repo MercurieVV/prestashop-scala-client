@@ -18,7 +18,7 @@ import java.util.{List => JList}
 // Scala
 import scala.collection.mutable.{Buffer, ArrayBuffer}
 import scala.collection.JavaConversions._
-import scala.reflect.BeanProperty
+import scala.beans.BeanProperty
 
 // JAXB
 import javax.xml.bind.annotation._
