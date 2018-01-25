@@ -33,6 +33,6 @@ import co.orderly.narcolepsy.marshallers.jaxb.types.DateSpaceTimeAdapter
 trait PrestaShopIdentity {
 
   @XmlElement(required = true)
-  @BeanProperty
+//  @BeanProperty
   var id: JLong = _
 }

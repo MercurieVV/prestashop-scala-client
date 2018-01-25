@@ -34,11 +34,11 @@ trait PrestaShopTimestampedIdentity extends PrestaShopIdentity {
 
   @XmlElement(required = true)
   @XmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
-  @BeanProperty
+//  @BeanProperty
   var dateAdd: JDate = _
 
   @XmlElement(required = true)
   @XmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
-  @BeanProperty
+//  @BeanProperty
   var dateUpd: JDate = _
 }
