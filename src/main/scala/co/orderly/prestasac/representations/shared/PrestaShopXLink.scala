@@ -34,4 +34,22 @@ class PrestaShopXLink extends Representation {
   @XmlValue
   @BeanProperty
   var id: JLong = _
+
+
+  override def equals(other: Any): Boolean = other match {
+    case that: PrestaShopXLink =>
+      (that canEqual this) &&
+        href == that.href &&
+        id == that.id
+    case _ => false
+  }
+
+  def canEqual(other: Any): Boolean = other.isInstanceOf[PrestaShopXLink]
+
+  override def toString = s"PrestaShopXLink($href, $id, $hashCode)"
+
+  override def hashCode(): Int = {
+    val state = Seq(href, id)
+    state.map(_.hashCode()).foldLeft(0)((a, b) => 31 * a + b)
+  }
 }

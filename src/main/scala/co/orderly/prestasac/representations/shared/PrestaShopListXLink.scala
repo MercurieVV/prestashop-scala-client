@@ -34,4 +34,22 @@ class PrestaShopListXLink extends Representation {
   @XmlAttribute(namespace = "http://www.w3.org/1999/xlink") // Href is an xlink: attribute
   @BeanProperty
   var href: String = _
+
+
+  override def equals(other: Any): Boolean = other match {
+    case that: PrestaShopListXLink =>
+      (that canEqual this) &&
+        id == that.id &&
+        href == that.href
+    case _ => false
+  }
+
+  def canEqual(other: Any): Boolean = other.isInstanceOf[PrestaShopListXLink]
+
+  override def toString = s"PrestaShopListXLink($id, $href, $hashCode)"
+
+  override def hashCode(): Int = {
+    val state = Seq(id, href)
+    state.map(_.hashCode()).foldLeft(0)((a, b) => 31 * a + b)
+  }
 }
