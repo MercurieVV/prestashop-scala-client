@@ -50,6 +50,6 @@ class PrestaShopXLink extends Representation {
 
   override def hashCode(): Int = {
     val state = Seq(href, id)
-    state.map(_.hashCode()).foldLeft(0)((a, b) => 31 * a + b)
+    state.filterNot(_ == null).map(_.hashCode()).foldLeft(0)((a, b) => 31 * a + b)
   }
 }
