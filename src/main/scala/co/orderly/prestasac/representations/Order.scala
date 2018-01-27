@@ -13,177 +13,178 @@
 package co.orderly.prestasac.representations
 
 // Java
-import java.util.{Collection => JCollection}
-import java.util.{Date => JDate}
-import java.lang.{Float => JFloat}
-import java.lang.{Integer => JInteger}
-import java.lang.{Long => JLong}
-import java.util.{List => JList}
+import java.lang.{Float => JFloat, Integer => JInteger, Long => JLong}
+import java.util.{Collection => JCollection, Date => JDate, List => JList}
 
 // Scala
-import scala.collection.mutable.{Buffer, ArrayBuffer}
 import scala.beans.BeanProperty
 import scala.collection.JavaConversions._
+import scala.collection.mutable.{ArrayBuffer, Buffer}
 
 // JAXB
 import javax.xml.bind.annotation._
-import adapters.XmlJavaTypeAdapter
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter
 
 // MOXy
 import org.eclipse.persistence.oxm.annotations.XmlNameTransformer
 
 // Narcolepsy
 import co.orderly.narcolepsy._
-import marshallers.jaxb.moxy.CamelCase2Underscore
-import marshallers.jaxb.types.DateSpaceTimeAdapter
+import co.orderly.narcolepsy.marshallers.jaxb.moxy.CamelCase2Underscore
+import co.orderly.narcolepsy.marshallers.jaxb.types.DateSpaceTimeAdapter
 
 // Prestasac
-import shared._
+import co.orderly.prestasac.representations.shared._
+
 
 /**
- * The Order representation holds the information pertaining to an
- * order in PrestaShop.
- */
+  * The Order representation holds the information pertaining to an
+  * order in PrestaShop.
+  */
+
 @XmlRootElement(name = "prestashop")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlNameTransformer(classOf[CamelCase2Underscore])
-class Order extends Representation {
+case class Order(
+                  @XmlElement(required = true)
+                  var order: OrderElement,
 
-  @XmlElement(required = true)
-  @BeanProperty
-  var order: OrderElement = _
+                ) extends Representation {
+  private def this() = this(null)
 }
 
 /**
- * The OrderElement holds the core fields for the order.
- */
+  * The OrderElement holds the core fields for the order.
+  */
 @XmlAccessorType(XmlAccessType.FIELD)
-class OrderElement extends PrestaShopTimestampedIdentity {
+case class OrderElement(
+                         // -------------------------------------------------------------------------------------------------------------------
+                         // XLinks into other resources
+                         // -------------------------------------------------------------------------------------------------------------------
 
-  // -------------------------------------------------------------------------------------------------------------------
-  // XLinks into other resources
-  // -------------------------------------------------------------------------------------------------------------------
+                         // TODO: retrieve the xlink:href as well
+                         @BeanProperty
+                         var idAddressDelivery: PrestaShopXLink, // JLong,
 
-  // TODO: retrieve the xlink:href as well
-  @BeanProperty
-  var idAddressDelivery: PrestaShopXLink = _ // JLong = _
+                         // TODO: retrieve the xlink:href as well
+                         @BeanProperty
+                         var idAddressInvoice: PrestaShopXLink, // JLong,
 
-  // TODO: retrieve the xlink:href as well
-  @BeanProperty
-  var idAddressInvoice: PrestaShopXLink = _ // JLong = _
+                         // TODO: retrieve the xlink:href as well
+                         @BeanProperty
+                         var idCart: PrestaShopXLink, // JLong,
 
-  // TODO: retrieve the xlink:href as well
-  @BeanProperty
-  var idCart: PrestaShopXLink = _ // JLong = _
+                         // TODO: retrieve the xlink:href as well
+                         @BeanProperty
+                         var idCurrency: PrestaShopXLink, // JLong,
 
-  // TODO: retrieve the xlink:href as well
-  @BeanProperty
-  var idCurrency: PrestaShopXLink = _ // JLong = _
+                         // TODO: retrieve the xlink:href as well
+                         @BeanProperty
+                         var idLang: PrestaShopXLink, // JLong,
 
-  // TODO: retrieve the xlink:href as well
-  @BeanProperty
-  var idLang: PrestaShopXLink = _ // JLong = _
+                         // TODO: retrieve the xlink:href as well
+                         @BeanProperty
+                         var idCustomer: PrestaShopXLink, // JLong,
 
-  // TODO: retrieve the xlink:href as well
-  @BeanProperty
-  var idCustomer: PrestaShopXLink = _ // JLong = _
+                         // TODO: retrieve the xlink:href as well
+                         @BeanProperty
+                         var idCarrier: PrestaShopXLink, // JLong,
 
-  // TODO: retrieve the xlink:href as well
-  @BeanProperty
-  var idCarrier: PrestaShopXLink = _ // JLong = _
+                         // -------------------------------------------------------------------------------------------------------------------
+                         // Resource-specific fields
+                         // -------------------------------------------------------------------------------------------------------------------
 
-  // -------------------------------------------------------------------------------------------------------------------
-  // Resource-specific fields
-  // -------------------------------------------------------------------------------------------------------------------
+                         @BeanProperty
+                         var module: String,
 
-  @BeanProperty
-  var module: String = _
+                         @BeanProperty
+                         var invoiceNumber: JLong,
 
-  @BeanProperty
-  var invoiceNumber: JLong = _
+                         @BeanProperty
+                         var deliveryNumber: JLong,
 
-  @BeanProperty
-  var deliveryNumber: JLong = _
+                         @XmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
+                         @BeanProperty
+                         var invoiceDate: JDate,
 
-  @XmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
-  @BeanProperty
-  var invoiceDate: JDate = _
+                         @XmlElement(nillable = true)
+                         @XmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
+                         @BeanProperty
+                         var deliveryDate: JDate,
 
-  @XmlElement(nillable = true)
-  @XmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
-  @BeanProperty
-  var deliveryDate: JDate = _
+                         @BeanProperty
+                         var valid: JInteger,
 
-  @BeanProperty
-  var valid: JInteger = _
+                         // TODO: fix current state (missing the attributes)
+                         @BeanProperty
+                         var currentState: JInteger,
 
-  // TODO: fix current state (missing the attributes)
-  @BeanProperty
-  var currentState: JInteger = _
+                         @BeanProperty
+                         var secureKey: String,
 
-  @BeanProperty
-  var secureKey: String = _
+                         @BeanProperty
+                         var payment: String,
 
-  @BeanProperty
-  var payment: String = _
+                         @BeanProperty
+                         var recyclable: JInteger,
 
-  @BeanProperty
-  var recyclable: JInteger = _
+                         @BeanProperty
+                         var gift: JInteger,
 
-  @BeanProperty
-  var gift: JInteger = _
+                         @XmlElement(nillable = true)
+                         @BeanProperty
+                         var giftMessage: String,
 
-  @XmlElement(nillable = true)
-  @BeanProperty
-  var giftMessage: String = _
+                         @BeanProperty
+                         var totalDiscounts: JFloat,
 
-  @BeanProperty
-  var totalDiscounts: JFloat = _
+                         @BeanProperty
+                         var totalPaid: JFloat,
 
-  @BeanProperty
-  var totalPaid: JFloat = _
+                         @BeanProperty
+                         var totalPaidReal: JFloat,
 
-  @BeanProperty
-  var totalPaidReal: JFloat = _
+                         @BeanProperty
+                         var totalProducts: JFloat,
 
-  @BeanProperty
-  var totalProducts: JFloat = _
+                         @BeanProperty
+                         var totalProductsWt: JFloat,
 
-  @BeanProperty
-  var totalProductsWt: JFloat = _
+                         @BeanProperty
+                         var totalShipping: JFloat,
 
-  @BeanProperty
-  var totalShipping: JFloat = _
+                         @BeanProperty
+                         var carrierTaxRate: JFloat,
 
-  @BeanProperty
-  var carrierTaxRate: JFloat = _
+                         @BeanProperty
+                         var totalWrapping: JFloat,
 
-  @BeanProperty
-  var totalWrapping: JFloat = _
+                         @XmlElement(nillable = true)
+                         @BeanProperty
+                         var shippingNumber: JLong,
 
-  @XmlElement(nillable = true)
-  @BeanProperty
-  var shippingNumber: JLong = _
+                         @BeanProperty
+                         var conversionRate: JFloat,
 
-  @BeanProperty
-  var conversionRate: JFloat = _
+                         // -------------------------------------------------------------------------------------------------------------------
+                         // Associations
+                         // -------------------------------------------------------------------------------------------------------------------
 
-  // -------------------------------------------------------------------------------------------------------------------
-  // Associations
-  // -------------------------------------------------------------------------------------------------------------------
-
-  @XmlElement(required = true)
-  @BeanProperty
-  var associations: Associations = _
+                         @XmlElement(required = true)
+                         @BeanProperty
+                         var associations: Associations,
+                       ) extends PrestaShopTimestampedIdentity {
+  private def this() = this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
 }
 
 /**
- * Associations is a wrapper around the order's line items (aka order rows).
- */
+  * Associations is a wrapper around the order's line items (aka order rows).
+  */
 @XmlType(name = "")
-class Associations {
+case class Associations(
+                         var orderRows: Buffer[OrderRow] = ArrayBuffer[OrderRow]()
+                       ) {
 
-  var orderRows: Buffer[OrderRow] = ArrayBuffer[OrderRow]()
 
   @XmlElementWrapper(name = "order_rows") // Needed to wrap <order_rows> around each <order_row>
   @XmlElement(name = "order_row", required = true)
@@ -192,30 +193,34 @@ class Associations {
   def setOrderRows(orderRows: JList[OrderRow]) {
     this.orderRows = orderRows
   }
+
+  private def this() = this(ArrayBuffer[OrderRow]())
 }
 
 /**
- * OrderRow contains the information pertaining to an individual line item
- * within an order.
- */
+  * OrderRow contains the information pertaining to an individual line item
+  * within an order.
+  */
 @XmlAccessorType(XmlAccessType.FIELD)
-class OrderRow {
+case class OrderRow(
 
-  @BeanProperty
-  var id: JLong = _
+                     @BeanProperty
+                     var id: JLong,
 
-  @BeanProperty
-  var productId: JLong = _
+                     @BeanProperty
+                     var productId: JLong,
 
-  @BeanProperty
-  var productAttributeId: JLong = _
+                     @BeanProperty
+                     var productAttributeId: JLong,
 
-  @BeanProperty
-  var productQuantity: JInteger = _
+                     @BeanProperty
+                     var productQuantity: JInteger,
 
-  @BeanProperty
-  var productName: String = _
+                     @BeanProperty
+                     var productName: String,
 
-  @BeanProperty
-  var productPrice: JFloat = _
+                     @BeanProperty
+                     var productPrice: JFloat
+                   ) {
+  private def this() = this(0, 0, 0, 0, "", 0)
 }
