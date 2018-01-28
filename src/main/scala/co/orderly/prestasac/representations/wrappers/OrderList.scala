@@ -34,7 +34,7 @@ import java.lang.{Long => JLong}
 
 @XmlRootElement(name = "prestashop")
 @XmlAccessorType(XmlAccessType.FIELD)
-class OrderList(
+case class OrderList(
                  var orders: Orders
 
                ) extends RepresentationWrapper[OrderListXLink] {
@@ -55,7 +55,7 @@ class OrderList(
 
 @XmlType(name = "")
 @XmlRootElement(name = "orders")
-class Orders(
+case class Orders(
               var orderLinks: Buffer[OrderListXLink] = ArrayBuffer[OrderListXLink]()
             ) {
   @xmlElement(name = "order", required = true)
@@ -65,7 +65,7 @@ class Orders(
     this.orderLinks = orderLinks
   }
 
-  private def this() = this(null)
+  private def this() = this(ArrayBuffer[OrderListXLink]())
 }
 
 @xmlElement(name = "order", required = true)
