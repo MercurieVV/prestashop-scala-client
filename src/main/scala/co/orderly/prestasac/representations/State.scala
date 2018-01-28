@@ -33,60 +33,65 @@ import marshallers.jaxb.moxy.CamelCase2Underscore
 import shared._
 
 /**
- * The State representation holds the information pertaining to a
- * state (aka region or county) in PrestaShop.
- *
- * A typical representation looks like this:
- *
- * <prestashop xmlns:xlink="http://www.w3.org/1999/xlink">
- *   <state>
- *     <id><![CDATA[15]]></id>
- *     <id_zone xlink:href="http://www.psychicbazaar.com/api/zones/2"><![CDATA[2]]></id_zone>
- *     <id_country xlink:href="http://www.psychicbazaar.com/api/countries/21"><![CDATA[21]]></id_country>
- *     <iso_code><![CDATA[IA]]></iso_code>
- *     <name><![CDATA[Iowa]]></name>
- *     <active><![CDATA[1]]></active>
- *   </state>
- * </prestashop>
- */
+  * The State representation holds the information pertaining to a
+  * state (aka region or county) in PrestaShop.
+  *
+  * A typical representation looks like this:
+  *
+  * <prestashop xmlns:xlink="http://www.w3.org/1999/xlink">
+  * <state>
+  * <id><![CDATA[15]]></id>
+  * <id_zone xlink:href="http://www.psychicbazaar.com/api/zones/2"><![CDATA[2]]></id_zone>
+  * <id_country xlink:href="http://www.psychicbazaar.com/api/countries/21"><![CDATA[21]]></id_country>
+  * <iso_code><![CDATA[IA]]></iso_code>
+  * <name><![CDATA[Iowa]]></name>
+  * <active><![CDATA[1]]></active>
+  * </state>
+  * </prestashop>
+  */
 @XmlRootElement(name = "prestashop")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlNameTransformer(classOf[CamelCase2Underscore])
-class State extends Representation {
+case class State(
+                  @xmlElement(required = true)
+                  @BeanProperty
+                  var state: StateElement,
 
-  @XmlElement(required = true)
-  @BeanProperty
-  var state: StateElement = _
+                ) extends Representation {
+
+  private def this() = this(null)
 }
 
 /**
- * The StateElement holds the core fields for the state.
- */
+  * The StateElement holds the core fields for the state.
+  */
 @XmlAccessorType(XmlAccessType.FIELD)
-class StateElement extends PrestaShopIdentity {
+case class StateElement(
+                         // -------------------------------------------------------------------------------------------------------------------
+                         // XLinks into other resources
+                         // -------------------------------------------------------------------------------------------------------------------
 
-  // -------------------------------------------------------------------------------------------------------------------
-  // XLinks into other resources
-  // -------------------------------------------------------------------------------------------------------------------
+                         // TODO: retrieve the xlink:href as well
+                         @BeanProperty
+                         var idZone: PrestaShopXLink, // JLong,
 
-  // TODO: retrieve the xlink:href as well
-  @BeanProperty
-  var idZone: PrestaShopXLink = _ // JLong = _
+                         // TODO: retrieve the xlink:href as well
+                         @BeanProperty
+                         var idCountry: PrestaShopXLink, // JLong,
 
-  // TODO: retrieve the xlink:href as well
-  @BeanProperty
-  var idCountry: PrestaShopXLink = _ // JLong = _
+                         // -------------------------------------------------------------------------------------------------------------------
+                         // Resource-specific fields
+                         // -------------------------------------------------------------------------------------------------------------------
 
-  // -------------------------------------------------------------------------------------------------------------------
-  // Resource-specific fields
-  // -------------------------------------------------------------------------------------------------------------------
+                         @BeanProperty
+                         var isoCode: String,
 
-  @BeanProperty
-  var isoCode: String = _
+                         @BeanProperty
+                         var name: String,
 
-  @BeanProperty
-  var name: String = _
+                         @BeanProperty
+                         var active: JInteger,
 
-  @BeanProperty
-  var active: JInteger = _
+                       ) extends PrestaShopIdentity {
+  private def this() = this(null, null, null, null, null)
 }

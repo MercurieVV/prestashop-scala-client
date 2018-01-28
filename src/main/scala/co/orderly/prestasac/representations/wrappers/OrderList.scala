@@ -15,6 +15,8 @@ package co.orderly.prestasac.representations.wrappers
 // Java
 import java.util.{List => JList}
 
+import co.orderly.prestasac.representations._
+
 // Scala
 import scala.collection.mutable.{Buffer, ArrayBuffer}
 import scala.collection.JavaConversions._
@@ -28,15 +30,19 @@ import co.orderly.narcolepsy._
 
 // Prestasac
 import co.orderly.prestasac.representations.shared.PrestaShopListXLink
+import java.lang.{Long => JLong}
 
 @XmlRootElement(name = "prestashop")
 @XmlAccessorType(XmlAccessType.FIELD)
-class OrderList extends RepresentationWrapper[OrderListXLink] {
+class OrderList(
+
+                 @BeanProperty
+                 var orders: Orders
+
+               ) extends RepresentationWrapper[OrderListXLink] {
 
   type rtype = OrderListXLink
 
-  @BeanProperty
-  var orders: Orders = _
 
   def toList: List[OrderListXLink] = this.orders.orderLinks.toList
 
@@ -45,22 +51,36 @@ class OrderList extends RepresentationWrapper[OrderListXLink] {
     p.orderLinks = orderLinks.toBuffer
     p
   }
+
+  private def this() = this(null)
 }
 
 @XmlType(name = "")
 @XmlRootElement(name = "orders")
-class Orders {
-
-  var orderLinks: Buffer[OrderListXLink] = ArrayBuffer[OrderListXLink]()
-
-  @XmlElement(name = "order", required = true)
+class Orders(
+              var orderLinks: Buffer[OrderListXLink] = ArrayBuffer[OrderListXLink]()
+            ) {
+  @xmlElement(name = "order", required = true)
   def getOrders: JList[OrderListXLink] = this.orderLinks
 
   def setOrders(orders: JList[OrderListXLink]) {
     this.orderLinks = orderLinks
   }
+
+  private def this() = this(null)
 }
 
-@XmlElement(name = "order", required = true)
+@xmlElement(name = "order", required = true)
 @XmlAccessorType(XmlAccessType.FIELD)
-class OrderListXLink extends PrestaShopListXLink
+case class OrderListXLink(
+                           @xmlAttribute // ID is a custom attribute
+                      @BeanProperty
+                      override val id: JLong,
+
+                           @xmlAttribute(namespace = "http://www.w3.org/1999/xlink") // Href is an xlink: attribute
+                      @BeanProperty
+                      override val href: String,
+                    ) extends PrestaShopListXLink(id, href) {
+  private def this() = this(null, null)
+
+}

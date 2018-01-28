@@ -32,7 +32,7 @@ import co.orderly.narcolepsy.marshallers.jaxb.types.DateSpaceTimeAdapter
 @XmlAccessorType(XmlAccessType.FIELD)
 trait PrestaShopIdentity {
 
-  @XmlElement(required = true)
+  @xmlElement(required = true)
 //  @BeanProperty
   var id: JLong = _
 }

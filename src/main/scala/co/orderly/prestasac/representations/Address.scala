@@ -69,105 +69,111 @@ import shared._
 @XmlRootElement(name = "prestashop")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlNameTransformer(classOf[CamelCase2Underscore])
-class Address extends Representation {
+case class Address(
+                    @xmlElement(required = true)
+                    @BeanProperty
+                    var address: AddressElement,
 
-  @XmlElement(required = true)
-  @BeanProperty
-  var address: AddressElement = _
+                  ) extends Representation {
+
+  private def this() = this(null)
 }
 
 /**
  * The AddressElement holds the core fields for the address.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-class AddressElement extends PrestaShopTimestampedIdentity {
+case class AddressElement(
+                         
 
   // -------------------------------------------------------------------------------------------------------------------
   // XLinks into other resources
   // -------------------------------------------------------------------------------------------------------------------
 
   // TODO: retrieve the xlink:href as well
-  @XmlElement(nillable = true)
+  @xmlElement(nillable = true)
   @BeanProperty
-  var idCustomer: PrestaShopXLink = _ // JLong = _
+  var idCustomer: PrestaShopXLink, // JLong,
 
   // TODO: retrieve the xlink:href as well
-  @XmlElement(nillable = true)
+  @xmlElement(nillable = true)
   @BeanProperty
-  var idManufacturer: PrestaShopXLink = _ // JLong = _
+  var idManufacturer: PrestaShopXLink, // JLong,
 
   // TODO: retrieve the xlink:href as well
-  @XmlElement(nillable = true)
+  @xmlElement(nillable = true)
   @BeanProperty
-  var idSupplier: PrestaShopXLink = _ // JLong = _
+  var idSupplier: PrestaShopXLink, // JLong,
 
   // TODO: retrieve the xlink:href as well
   @BeanProperty
-  var idCountry: PrestaShopXLink = _ // JLong = _
+  var idCountry: PrestaShopXLink, // JLong,
 
   // TODO: retrieve the xlink:href as well
-  @XmlElement(nillable = true)
+  @xmlElement(nillable = true)
   @BeanProperty
-  var idState: PrestaShopXLink = _ // JLong = _
+  var idState: PrestaShopXLink, // JLong,
 
   // -------------------------------------------------------------------------------------------------------------------
   // Resource-specific fields
   // -------------------------------------------------------------------------------------------------------------------
 
   @BeanProperty
-  var alias: String = _
+  var alias: String,
 
-  @XmlElement(nillable = true)
+  @xmlElement(nillable = true)
   @BeanProperty
-  var company: String = _
+  var company: String,
 
-  @XmlElement(name = "lastname")
+  @xmlElement(name = "lastname")
   @BeanProperty
-  var lastName: String = _
+  var lastName: String,
 
-  @XmlElement(name = "firstname")
+  @xmlElement(name = "firstname")
   @BeanProperty
-  var firstName: String = _
-
-  @BeanProperty
-  var address1: String = _
-
-  @XmlElement(nillable = true)
-  @BeanProperty
-  var address2: String = _
+  var firstName: String,
 
   @BeanProperty
-  var postcode: String = _
+  var address1: String,
+
+  @xmlElement(nillable = true)
+  @BeanProperty
+  var address2: String,
 
   @BeanProperty
-  var city: String = _
-
-  @XmlElement(nillable = true)
-  @BeanProperty
-  var other: String = _
-
-  @XmlElement(nillable = true)
-  @BeanProperty
-  var phone: String = _
-
-  @XmlElement(nillable = true)
-  @BeanProperty
-  var phoneMobile: String = _
-
-  @XmlElement(nillable = true)
-  @BeanProperty
-  var dni: String = _
-
-  @XmlElement(nillable = true)
-  @BeanProperty
-  var vatNumber: String = _
+  var postcode: String,
 
   @BeanProperty
-  var deleted: JInteger = _
+  var city: String,
+
+  @xmlElement(nillable = true)
+  @BeanProperty
+  var other: String,
+
+  @xmlElement(nillable = true)
+  @BeanProperty
+  var phone: String,
+
+  @xmlElement(nillable = true)
+  @BeanProperty
+  var phoneMobile: String,
+
+  @xmlElement(nillable = true)
+  @BeanProperty
+  var dni: String,
+
+  @xmlElement(nillable = true)
+  @BeanProperty
+  var vatNumber: String,
+
+  @BeanProperty
+  var deleted: JInteger,
 
   // -------------------------------------------------------------------------------------------------------------------
   // Associations
   // -------------------------------------------------------------------------------------------------------------------
 
   // None
+  ) extends PrestaShopTimestampedIdentity {
+  private def this() = this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
 }

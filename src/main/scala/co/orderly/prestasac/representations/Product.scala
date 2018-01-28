@@ -45,7 +45,7 @@ import shared._
 @XmlNameTransformer(classOf[CamelCase2Underscore])
 class Product extends Representation {
 
-  @XmlElement(required = true)
+  @xmlElement(required = true)
   @BeanProperty
   var product: ProductElement = _
 }
@@ -136,7 +136,7 @@ class ProductElement extends PrestaShopTimestampedIdentity {
   var ecotax: JFloat = _
 
   // TODO: check assumption that <unit_price> is a float (it probably is)
-  @XmlElement(nillable = true)
+  @xmlElement(nillable = true)
   @BeanProperty
   var unitPrice: JFloat = _
 

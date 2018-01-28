@@ -36,44 +36,49 @@ import marshallers.jaxb.moxy.CamelCase2Underscore
 import shared._
 
 /**
- * The Error representation holds the information pertaining to a
- * web service error which occurred in PrestaShop.
- *
- * A typical representation looks like this:
- *
- * <?xml version="1.0" encoding="UTF-8"?>
- * <prestashop xmlns:xlink="http://www.w3.org/1999/xlink">
- *   <errors>
- *     <error>
- *       <message><![CDATA[Internal error. To see this error please display the PHP errors.]]></message>
- *     </error>
- *   </errors>
- * </prestashop>
- */
+  * The Error representation holds the information pertaining to a
+  * web service error which occurred in PrestaShop.
+  *
+  * A typical representation looks like this:
+  *
+  * <?xml version="1.0" encoding="UTF-8"?>
+  * <prestashop xmlns:xlink="http://www.w3.org/1999/xlink">
+  * <errors>
+  * <error>
+  * <message><![CDATA[Internal error. To see this error please display the PHP errors.]]></message>
+  * </error>
+  * </errors>
+  * </prestashop>
+  */
 @XmlRootElement(name = "prestashop")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlNameTransformer(classOf[CamelCase2Underscore])
 @XmlType(name = "") // TODO: delete this line if any issues
-class PrestaShopError extends ErrorRepresentation {
+case class PrestaShopError(
 
-  var errors: Buffer[PrestaShopErrorRow] = ArrayBuffer[PrestaShopErrorRow]()
+                            var errors: Buffer[PrestaShopErrorRow] = ArrayBuffer[PrestaShopErrorRow]()
 
-  @XmlElementWrapper(name = "errors") // Needed to wrap <order_rows> around each <order_row>
-  @XmlElement(name = "error", required = true)
+
+                          ) extends ErrorRepresentation {
+
+  @xmlElementWrapper(name = "errors") // Needed to wrap <order_rows> around each <order_row>
+  @xmlElement(name = "error", required = true)
   def getErrors: JList[PrestaShopErrorRow] = this.errors
 
   def setErrors(errors: JList[PrestaShopErrorRow]) {
     this.errors = errors
   }
+private def this() = this(null)
 }
 
 /**
- * ErrorRow contains the information pertaining to an individual error within
- * the PrestaShopError representation.
- */
+  * ErrorRow contains the information pertaining to an individual error within
+  * the PrestaShopError representation.
+  */
 @XmlAccessorType(XmlAccessType.FIELD)
-class PrestaShopErrorRow {
-
-  @BeanProperty
-  var message: String = _
+case class PrestaShopErrorRow(
+                               @BeanProperty
+                               var message: String
+                             ) {
+  private def this() = this(null)
 }

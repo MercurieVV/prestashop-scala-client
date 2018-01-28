@@ -46,7 +46,7 @@ import co.orderly.prestasac.representations.shared._
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlNameTransformer(classOf[CamelCase2Underscore])
 case class Order(
-                  @XmlElement(required = true)
+                  @xmlElement(required = true)
                   var order: OrderElement,
 
                 ) extends Representation {
@@ -103,12 +103,12 @@ case class OrderElement(
                          @BeanProperty
                          var deliveryNumber: JLong,
 
-                         @XmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
+                         @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
                          @BeanProperty
                          var invoiceDate: JDate,
 
-                         @XmlElement(nillable = true)
-                         @XmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
+                         @xmlElement(nillable = true)
+                         @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
                          @BeanProperty
                          var deliveryDate: JDate,
 
@@ -131,7 +131,7 @@ case class OrderElement(
                          @BeanProperty
                          var gift: JInteger,
 
-                         @XmlElement(nillable = true)
+                         @xmlElement(nillable = true)
                          @BeanProperty
                          var giftMessage: String,
 
@@ -159,7 +159,7 @@ case class OrderElement(
                          @BeanProperty
                          var totalWrapping: JFloat,
 
-                         @XmlElement(nillable = true)
+                         @xmlElement(nillable = true)
                          @BeanProperty
                          var shippingNumber: JLong,
 
@@ -170,7 +170,7 @@ case class OrderElement(
                          // Associations
                          // -------------------------------------------------------------------------------------------------------------------
 
-                         @XmlElement(required = true)
+                         @xmlElement(required = true)
                          @BeanProperty
                          var associations: Associations,
                        ) extends PrestaShopTimestampedIdentity {
@@ -186,8 +186,8 @@ case class Associations(
                        ) {
 
 
-  @XmlElementWrapper(name = "order_rows") // Needed to wrap <order_rows> around each <order_row>
-  @XmlElement(name = "order_row", required = true)
+  @xmlElementWrapper(name = "order_rows") // Needed to wrap <order_rows> around each <order_row>
+  @xmlElement(name = "order_row", required = true)
   def getOrderRows: JList[OrderRow] = this.orderRows
 
   def setOrderRows(orderRows: JList[OrderRow]) {

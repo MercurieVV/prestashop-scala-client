@@ -25,31 +25,14 @@ import javax.xml.bind.annotation._
 import co.orderly.narcolepsy.Representation
 
 @XmlAccessorType(XmlAccessType.FIELD)
-class PrestaShopListXLink extends Representation {
+ class PrestaShopListXLink(
+                                @xmlAttribute // ID is a custom attribute
+                                @BeanProperty
+                                val id: JLong,
 
-  @XmlAttribute // ID is a custom attribute
-  @BeanProperty
-  var id: JLong = _
-
-  @XmlAttribute(namespace = "http://www.w3.org/1999/xlink") // Href is an xlink: attribute
-  @BeanProperty
-  var href: String = _
-
-
-  override def equals(other: Any): Boolean = other match {
-    case that: PrestaShopListXLink =>
-      (that canEqual this) &&
-        id == that.id &&
-        href == that.href
-    case _ => false
-  }
-
-  def canEqual(other: Any): Boolean = other.isInstanceOf[PrestaShopListXLink]
-
-  override def toString = s"PrestaShopListXLink($id, $href, $hashCode)"
-
-  override def hashCode(): Int = {
-    val state = Seq(id, href)
-    state.filterNot(_ == null).map(_.hashCode()).foldLeft(0)((a, b) => 31 * a + b)
-  }
+                                @xmlAttribute(namespace = "http://www.w3.org/1999/xlink") // Href is an xlink: attribute
+                                @BeanProperty
+                                val href: String,
+                              ) extends Representation {
+  private def this() = this(null, null)
 }

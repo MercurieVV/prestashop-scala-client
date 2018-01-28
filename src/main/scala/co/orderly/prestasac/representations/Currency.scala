@@ -59,18 +59,23 @@ import shared._
 @XmlRootElement(name = "prestashop")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlNameTransformer(classOf[CamelCase2Underscore])
-class Currency extends Representation {
+case class Currency(
 
-  @XmlElement(required = true)
-  @BeanProperty
-  var currency: CurrencyElement = _
+                     @xmlElement(required = true)
+                     @BeanProperty
+                     var currency: CurrencyElement,
+
+                   ) extends Representation {
+
+  private def this() = this(null)
 }
 
 /**
  * The CurrencyElement holds the core fields for the currency.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-class CurrencyElement extends PrestaShopIdentity {
+case class CurrencyElement(
+
 
   // -------------------------------------------------------------------------------------------------------------------
   // XLinks into other resources
@@ -83,32 +88,34 @@ class CurrencyElement extends PrestaShopIdentity {
   // -------------------------------------------------------------------------------------------------------------------
 
   @BeanProperty
-  var name: String = _
+  var name: String,
 
   @BeanProperty
-  var isoCode: String = _
+  var isoCode: String,
 
   @BeanProperty
-  var isoCodeNum: String = _
+  var isoCodeNum: String,
 
   @BeanProperty
-  var sign: String = _
+  var sign: String,
 
   @BeanProperty
-  var blank: JInteger = _
+  var blank: JInteger,
 
   @BeanProperty
-  var format: JInteger = _
+  var format: JInteger,
 
   @BeanProperty
-  var decimals: JInteger = _
+  var decimals: JInteger,
 
   @BeanProperty
-  var conversionRate: JFloat = _
+  var conversionRate: JFloat,
 
   @BeanProperty
-  var deleted: JInteger = _
+  var deleted: JInteger,
 
   @BeanProperty
-  var active: JInteger = _
+  var active: JInteger,
+  ) extends PrestaShopIdentity {
+  private def this() = this(null, null, null, null, null, null, null, null, null, null)
 }

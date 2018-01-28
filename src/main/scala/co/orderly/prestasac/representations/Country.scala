@@ -58,18 +58,21 @@ import shared._
 @XmlRootElement(name = "prestashop")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlNameTransformer(classOf[CamelCase2Underscore])
-class Country extends Representation {
+case class Country(
+                    @xmlElement(required = true)
+                    @BeanProperty
+                    var country: CountryElement,
 
-  @XmlElement(required = true)
-  @BeanProperty
-  var country: CountryElement = _
+                  ) extends Representation {
+
+  private def this() = this(null)
 }
 
 /**
  * The StateElement holds the core fields for the state.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-class CountryElement extends PrestaShopIdentity {
+case class CountryElement(
 
   // -------------------------------------------------------------------------------------------------------------------
   // XLinks into other resources
@@ -77,42 +80,44 @@ class CountryElement extends PrestaShopIdentity {
 
   // TODO: retrieve the xlink:href as well
   @BeanProperty
-  var idZone: PrestaShopXLink = _ // JLong = _
+  var idZone: PrestaShopXLink, // JLong,
 
   // TODO: retrieve the xlink:href as well
-  @XmlElement(nillable = true)
+  @xmlElement(nillable = true)
   @BeanProperty
-  var idCurrency: PrestaShopXLink = _ // JLong = _
+  var idCurrency: PrestaShopXLink, // JLong,
 
   // -------------------------------------------------------------------------------------------------------------------
   // Resource-specific fields
   // -------------------------------------------------------------------------------------------------------------------
 
   @BeanProperty
-  var isoCode: String = _
+  var isoCode: String,
 
   @BeanProperty
-  var callPrefix: String = _
+  var callPrefix: String,
 
   @BeanProperty
-  var active: JInteger = _
+  var active: JInteger,
 
   @BeanProperty
-  var containsStates: JInteger = _
+  var containsStates: JInteger,
 
   @BeanProperty
-  var needIdentificationNumber: JInteger = _
+  var needIdentificationNumber: JInteger,
 
   @BeanProperty
-  var needZipCode: JInteger = _
+  var needZipCode: JInteger,
 
   @BeanProperty
-  var zipCodeFormat: String = _
+  var zipCodeFormat: String,
 
   @BeanProperty
-  var displayTaxLabel: JInteger = _
+  var displayTaxLabel: JInteger,
 
   // TODO: add in name. It's wrapped inside a <language> element
   // @BeanProperty
-  // var name: String = _
+  // var name: String,
+  ) extends PrestaShopIdentity {
+  private def this() = this(null, null, null, null, null, null, null, null, null, null)
 }

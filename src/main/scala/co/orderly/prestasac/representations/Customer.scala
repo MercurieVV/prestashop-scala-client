@@ -70,18 +70,21 @@ import shared._
 @XmlRootElement(name = "prestashop")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlNameTransformer(classOf[CamelCase2Underscore])
-class Customer extends Representation {
+case class Customer(
+                     @xmlElement(required = true)
+                     @BeanProperty
+                     var customer: CustomerElement,
+                   ) extends Representation {
 
-  @XmlElement(required = true)
-  @BeanProperty
-  var customer: CustomerElement = _
+  private def this() = this(null)
 }
 
 /**
  * The CustomerElement holds the core fields for the address.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-class CustomerElement extends PrestaShopTimestampedIdentity {
+case class CustomerElement(
+                     
 
   // -------------------------------------------------------------------------------------------------------------------
   // XLinks into other resources
@@ -89,69 +92,71 @@ class CustomerElement extends PrestaShopTimestampedIdentity {
 
   // TODO: retrieve the xlink:href as well
   @BeanProperty
-  var idDefaultGroup: PrestaShopXLink = _ // JLong = _
+  var idDefaultGroup: PrestaShopXLink, // JLong,
 
   // -------------------------------------------------------------------------------------------------------------------
   // Resource-specific fields
   // -------------------------------------------------------------------------------------------------------------------
 
-  @XmlElement(nillable = true)
-  @XmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
+  @xmlElement(nillable = true)
+  @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
   @BeanProperty
-  var newsletterDateAdd: JDate = _
+  var newsletterDateAdd: JDate,
 
-  @XmlElement(nillable = true)
+  @xmlElement(nillable = true)
   @BeanProperty
-  var ipRegistrationNewsletter: String = _
+  var ipRegistrationNewsletter: String,
 
-  @XmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
+  @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
   @BeanProperty
-  var lastPasswdGen: JDate = _
-
-  @BeanProperty
-  var secureKey: String = _
+  var lastPasswdGen: JDate,
 
   @BeanProperty
-  var deleted: JInteger = _
+  var secureKey: String,
 
   @BeanProperty
-  var passwd: String = _
-
-  @XmlElement(name = "lastname")
-  @BeanProperty
-  var lastName: String = _
-
-  @XmlElement(name = "firstname")
-  @BeanProperty
-  var firstName: String = _
+  var deleted: JInteger,
 
   @BeanProperty
-  var email: String = _
+  var passwd: String,
 
-  @XmlElement(nillable = true)
+  @xmlElement(name = "lastname")
   @BeanProperty
-  var note: String = _
+  var lastName: String,
+
+  @xmlElement(name = "firstname")
+  @BeanProperty
+  var firstName: String,
 
   @BeanProperty
-  var idGender: JInteger = _
+  var email: String,
+
+  @xmlElement(nillable = true)
+  @BeanProperty
+  var note: String,
+
+  @BeanProperty
+  var idGender: JInteger,
 
   // TODO: add in birthday field (left out as not sure of type). It's nillable though
 
   @BeanProperty
-  var newsletter: JInteger = _
+  var newsletter: JInteger,
 
   @BeanProperty
-  var optin: JInteger = _
+  var optin: JInteger,
 
   @BeanProperty
-  var active: JInteger = _
+  var active: JInteger,
 
   @BeanProperty
-  var isGuest: JInteger = _
+  var isGuest: JInteger,
 
   // -------------------------------------------------------------------------------------------------------------------
   // Associations
   // -------------------------------------------------------------------------------------------------------------------
 
   // None
+  ) extends PrestaShopTimestampedIdentity {
+  private def this() = this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
 }

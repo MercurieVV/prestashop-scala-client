@@ -61,7 +61,7 @@ import shared._
 @XmlNameTransformer(classOf[CamelCase2Underscore])
 class Carrier extends Representation {
 
-  @XmlElement(required = true)
+  @xmlElement(required = true)
   @BeanProperty
   var carrier: CarrierElement = _
 }
@@ -100,7 +100,7 @@ class CarrierElement extends PrestaShopIdentity {
   @BeanProperty
   var isFree: JInteger = _
 
-  @XmlElement(nillable = true)
+  @xmlElement(nillable = true)
   @BeanProperty
   var url: String = _
 

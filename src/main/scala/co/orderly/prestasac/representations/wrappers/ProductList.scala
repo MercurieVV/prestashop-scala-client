@@ -15,6 +15,8 @@ package co.orderly.prestasac.representations.wrappers
 // Java
 import java.util.{List => JList}
 
+import co.orderly.prestasac.representations._
+
 import scala.beans.BeanProperty
 
 // Scala
@@ -54,14 +56,24 @@ class Products {
 
   var productLinks: Buffer[ProductListXLink] = ArrayBuffer[ProductListXLink]()
 
-  @XmlElement(name = "product", required = true)
+  @xmlElement(name = "product", required = true)
   def getProducts: JList[ProductListXLink] = this.productLinks
 
   def setProducts(products: JList[ProductListXLink]) {
     this.productLinks = productLinks
   }
 }
+import java.lang.{Long => JLong}
 
-@XmlElement(name = "product", required = true)
+@xmlElement(name = "product", required = true)
 @XmlAccessorType(XmlAccessType.FIELD)
-class ProductListXLink extends PrestaShopListXLink
+class ProductListXLink(
+                        @xmlAttribute // ID is a custom attribute
+                        @BeanProperty
+                        override val id: JLong,
+
+                        @xmlAttribute(namespace = "http://www.w3.org/1999/xlink") // Href is an xlink: attribute
+                        @BeanProperty
+                        override val href: String,
+
+                      ) extends PrestaShopListXLink(id, href)

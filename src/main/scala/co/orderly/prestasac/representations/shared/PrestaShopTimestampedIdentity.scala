@@ -16,6 +16,8 @@ package co.orderly.prestasac.representations.shared
 import java.util.{Date => JDate}
 import java.lang.{Long => JLong}
 
+import co.orderly.prestasac.representations._
+
 // Scala
 import scala.beans.BeanProperty
 
@@ -32,13 +34,13 @@ import co.orderly.narcolepsy.marshallers.jaxb.types.DateSpaceTimeAdapter
 @XmlAccessorType(XmlAccessType.FIELD)
 trait PrestaShopTimestampedIdentity extends PrestaShopIdentity {
 
-  @XmlElement(required = true)
-  @XmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
+  @xmlElement(required = true)
+  @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
 //  @BeanProperty
   var dateAdd: JDate = _
 
-  @XmlElement(required = true)
-  @XmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
+  @xmlElement(required = true)
+  @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
 //  @BeanProperty
   var dateUpd: JDate = _
 }
