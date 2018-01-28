@@ -71,7 +71,6 @@ import shared._
 @XmlNameTransformer(classOf[CamelCase2Underscore])
 case class Address(
                     @xmlElement(required = true)
-                    @BeanProperty
                     var address: AddressElement,
 
                   ) extends Representation {
@@ -92,81 +91,57 @@ case class AddressElement(
 
   // TODO: retrieve the xlink:href as well
   @xmlElement(nillable = true)
-  @BeanProperty
   var idCustomer: PrestaShopXLink, // JLong,
 
   // TODO: retrieve the xlink:href as well
   @xmlElement(nillable = true)
-  @BeanProperty
   var idManufacturer: PrestaShopXLink, // JLong,
 
   // TODO: retrieve the xlink:href as well
   @xmlElement(nillable = true)
-  @BeanProperty
   var idSupplier: PrestaShopXLink, // JLong,
 
   // TODO: retrieve the xlink:href as well
-  @BeanProperty
   var idCountry: PrestaShopXLink, // JLong,
 
   // TODO: retrieve the xlink:href as well
   @xmlElement(nillable = true)
-  @BeanProperty
   var idState: PrestaShopXLink, // JLong,
 
   // -------------------------------------------------------------------------------------------------------------------
   // Resource-specific fields
   // -------------------------------------------------------------------------------------------------------------------
-
-  @BeanProperty
   var alias: String,
 
   @xmlElement(nillable = true)
-  @BeanProperty
   var company: String,
 
   @xmlElement(name = "lastname")
-  @BeanProperty
   var lastName: String,
 
   @xmlElement(name = "firstname")
-  @BeanProperty
   var firstName: String,
-
-  @BeanProperty
   var address1: String,
 
   @xmlElement(nillable = true)
-  @BeanProperty
   var address2: String,
-
-  @BeanProperty
   var postcode: String,
-
-  @BeanProperty
   var city: String,
 
   @xmlElement(nillable = true)
-  @BeanProperty
   var other: String,
 
   @xmlElement(nillable = true)
-  @BeanProperty
   var phone: String,
 
   @xmlElement(nillable = true)
-  @BeanProperty
   var phoneMobile: String,
 
   @xmlElement(nillable = true)
-  @BeanProperty
   var dni: String,
 
   @xmlElement(nillable = true)
-  @BeanProperty
   var vatNumber: String,
-
-  @BeanProperty
   var deleted: JInteger,
 
   // -------------------------------------------------------------------------------------------------------------------

@@ -60,7 +60,6 @@ import shared._
 @XmlNameTransformer(classOf[CamelCase2Underscore])
 case class Country(
                     @xmlElement(required = true)
-                    @BeanProperty
                     var country: CountryElement,
 
                   ) extends Representation {
@@ -79,40 +78,22 @@ case class CountryElement(
   // -------------------------------------------------------------------------------------------------------------------
 
   // TODO: retrieve the xlink:href as well
-  @BeanProperty
   var idZone: PrestaShopXLink, // JLong,
 
   // TODO: retrieve the xlink:href as well
   @xmlElement(nillable = true)
-  @BeanProperty
   var idCurrency: PrestaShopXLink, // JLong,
 
   // -------------------------------------------------------------------------------------------------------------------
   // Resource-specific fields
   // -------------------------------------------------------------------------------------------------------------------
-
-  @BeanProperty
   var isoCode: String,
-
-  @BeanProperty
   var callPrefix: String,
-
-  @BeanProperty
   var active: JInteger,
-
-  @BeanProperty
   var containsStates: JInteger,
-
-  @BeanProperty
   var needIdentificationNumber: JInteger,
-
-  @BeanProperty
   var needZipCode: JInteger,
-
-  @BeanProperty
   var zipCodeFormat: String,
-
-  @BeanProperty
   var displayTaxLabel: JInteger,
 
   // TODO: add in name. It's wrapped inside a <language> element

@@ -72,7 +72,6 @@ import shared._
 @XmlNameTransformer(classOf[CamelCase2Underscore])
 case class Customer(
                      @xmlElement(required = true)
-                     @BeanProperty
                      var customer: CustomerElement,
                    ) extends Representation {
 
@@ -91,7 +90,6 @@ case class CustomerElement(
   // -------------------------------------------------------------------------------------------------------------------
 
   // TODO: retrieve the xlink:href as well
-  @BeanProperty
   var idDefaultGroup: PrestaShopXLink, // JLong,
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -100,56 +98,32 @@ case class CustomerElement(
 
   @xmlElement(nillable = true)
   @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
-  @BeanProperty
   var newsletterDateAdd: JDate,
 
   @xmlElement(nillable = true)
-  @BeanProperty
   var ipRegistrationNewsletter: String,
 
   @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
-  @BeanProperty
   var lastPasswdGen: JDate,
-
-  @BeanProperty
   var secureKey: String,
-
-  @BeanProperty
   var deleted: JInteger,
-
-  @BeanProperty
   var passwd: String,
 
   @xmlElement(name = "lastname")
-  @BeanProperty
   var lastName: String,
 
   @xmlElement(name = "firstname")
-  @BeanProperty
   var firstName: String,
-
-  @BeanProperty
   var email: String,
 
   @xmlElement(nillable = true)
-  @BeanProperty
   var note: String,
-
-  @BeanProperty
   var idGender: JInteger,
 
   // TODO: add in birthday field (left out as not sure of type). It's nillable though
-
-  @BeanProperty
   var newsletter: JInteger,
-
-  @BeanProperty
   var optin: JInteger,
-
-  @BeanProperty
   var active: JInteger,
-
-  @BeanProperty
   var isGuest: JInteger,
 
   // -------------------------------------------------------------------------------------------------------------------

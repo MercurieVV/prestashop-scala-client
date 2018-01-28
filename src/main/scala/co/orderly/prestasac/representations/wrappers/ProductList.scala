@@ -37,8 +37,6 @@ import co.orderly.prestasac.representations.shared.PrestaShopListXLink
 class ProductList extends RepresentationWrapper[ProductListXLink] {
 
   type rtype = ProductListXLink
-
-  @BeanProperty
   var products: Products = _
 
   def toList: List[ProductListXLink] = this.products.productLinks.toList
@@ -69,11 +67,9 @@ import java.lang.{Long => JLong}
 @XmlAccessorType(XmlAccessType.FIELD)
 class ProductListXLink(
                         @xmlAttribute // ID is a custom attribute
-                        @BeanProperty
                         override val id: JLong,
 
                         @xmlAttribute(namespace = "http://www.w3.org/1999/xlink") // Href is an xlink: attribute
-                        @BeanProperty
                         override val href: String,
 
                       ) extends PrestaShopListXLink(id, href)

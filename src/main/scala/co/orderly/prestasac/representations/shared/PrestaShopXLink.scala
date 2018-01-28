@@ -30,7 +30,7 @@ case class PrestaShopXLink(
                             @xmlAttribute(namespace = "http://www.w3.org/1999/xlink")
                             var href: String,
 
-                            @XmlValue
+                            @xmlValue
                             var id: JLong,
 
                           ) extends Representation {

@@ -63,107 +63,61 @@ case class OrderElement(
                          // -------------------------------------------------------------------------------------------------------------------
 
                          // TODO: retrieve the xlink:href as well
-                         @BeanProperty
                          var idAddressDelivery: PrestaShopXLink, // JLong,
 
                          // TODO: retrieve the xlink:href as well
-                         @BeanProperty
                          var idAddressInvoice: PrestaShopXLink, // JLong,
 
                          // TODO: retrieve the xlink:href as well
-                         @BeanProperty
                          var idCart: PrestaShopXLink, // JLong,
 
                          // TODO: retrieve the xlink:href as well
-                         @BeanProperty
                          var idCurrency: PrestaShopXLink, // JLong,
 
                          // TODO: retrieve the xlink:href as well
-                         @BeanProperty
                          var idLang: PrestaShopXLink, // JLong,
 
                          // TODO: retrieve the xlink:href as well
-                         @BeanProperty
                          var idCustomer: PrestaShopXLink, // JLong,
 
                          // TODO: retrieve the xlink:href as well
-                         @BeanProperty
                          var idCarrier: PrestaShopXLink, // JLong,
 
                          // -------------------------------------------------------------------------------------------------------------------
                          // Resource-specific fields
                          // -------------------------------------------------------------------------------------------------------------------
-
-                         @BeanProperty
                          var module: String,
-
-                         @BeanProperty
                          var invoiceNumber: JLong,
-
-                         @BeanProperty
                          var deliveryNumber: JLong,
 
                          @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
-                         @BeanProperty
                          var invoiceDate: JDate,
 
                          @xmlElement(nillable = true)
                          @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
-                         @BeanProperty
                          var deliveryDate: JDate,
-
-                         @BeanProperty
                          var valid: JInteger,
 
                          // TODO: fix current state (missing the attributes)
-                         @BeanProperty
                          var currentState: JInteger,
-
-                         @BeanProperty
                          var secureKey: String,
-
-                         @BeanProperty
                          var payment: String,
-
-                         @BeanProperty
                          var recyclable: JInteger,
-
-                         @BeanProperty
                          var gift: JInteger,
 
                          @xmlElement(nillable = true)
-                         @BeanProperty
                          var giftMessage: String,
-
-                         @BeanProperty
                          var totalDiscounts: JFloat,
-
-                         @BeanProperty
                          var totalPaid: JFloat,
-
-                         @BeanProperty
                          var totalPaidReal: JFloat,
-
-                         @BeanProperty
                          var totalProducts: JFloat,
-
-                         @BeanProperty
                          var totalProductsWt: JFloat,
-
-                         @BeanProperty
                          var totalShipping: JFloat,
-
-                         @BeanProperty
                          var carrierTaxRate: JFloat,
-
-                         @BeanProperty
                          var totalWrapping: JFloat,
 
                          @xmlElement(nillable = true)
-                         @BeanProperty
                          var shippingNumber: JLong,
-
-                         @BeanProperty
                          var conversionRate: JFloat,
 
                          // -------------------------------------------------------------------------------------------------------------------
@@ -171,7 +125,6 @@ case class OrderElement(
                          // -------------------------------------------------------------------------------------------------------------------
 
                          @xmlElement(required = true)
-                         @BeanProperty
                          var associations: Associations,
                        ) extends PrestaShopTimestampedIdentity {
   private def this() = this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
@@ -203,23 +156,11 @@ case class Associations(
   */
 @XmlAccessorType(XmlAccessType.FIELD)
 case class OrderRow(
-
-                     @BeanProperty
                      var id: JLong,
-
-                     @BeanProperty
                      var productId: JLong,
-
-                     @BeanProperty
                      var productAttributeId: JLong,
-
-                     @BeanProperty
                      var productQuantity: JInteger,
-
-                     @BeanProperty
                      var productName: String,
-
-                     @BeanProperty
                      var productPrice: JFloat
                    ) {
   private def this() = this(0, 0, 0, 0, "", 0)

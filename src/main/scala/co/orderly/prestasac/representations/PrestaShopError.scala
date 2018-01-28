@@ -77,7 +77,6 @@ private def this() = this(null)
   */
 @XmlAccessorType(XmlAccessType.FIELD)
 case class PrestaShopErrorRow(
-                               @BeanProperty
                                var message: String
                              ) {
   private def this() = this(null)

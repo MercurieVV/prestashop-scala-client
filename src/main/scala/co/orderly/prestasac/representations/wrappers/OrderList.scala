@@ -35,8 +35,6 @@ import java.lang.{Long => JLong}
 @XmlRootElement(name = "prestashop")
 @XmlAccessorType(XmlAccessType.FIELD)
 class OrderList(
-
-                 @BeanProperty
                  var orders: Orders
 
                ) extends RepresentationWrapper[OrderListXLink] {
@@ -74,11 +72,9 @@ class Orders(
 @XmlAccessorType(XmlAccessType.FIELD)
 case class OrderListXLink(
                            @xmlAttribute // ID is a custom attribute
-                      @BeanProperty
                       override val id: JLong,
 
                            @xmlAttribute(namespace = "http://www.w3.org/1999/xlink") // Href is an xlink: attribute
-                      @BeanProperty
                       override val href: String,
                     ) extends PrestaShopListXLink(id, href) {
   private def this() = this(null, null)

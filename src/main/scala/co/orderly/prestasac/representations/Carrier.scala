@@ -62,7 +62,6 @@ import shared._
 class Carrier extends Representation {
 
   @xmlElement(required = true)
-  @BeanProperty
   var carrier: CarrierElement = _
 }
 
@@ -81,36 +80,17 @@ class CarrierElement extends PrestaShopIdentity {
   // -------------------------------------------------------------------------------------------------------------------
   // Resource-specific fields
   // -------------------------------------------------------------------------------------------------------------------
-
-  @BeanProperty
   var idTaxRulesGroup: JInteger = _
-
-  @BeanProperty
   var deleted: JInteger = _
-
-  @BeanProperty
   var isModule: JInteger = _
-
-  @BeanProperty
   var name: String = _
-
-  @BeanProperty
   var active: JInteger = _
-
-  @BeanProperty
   var isFree: JInteger = _
 
   @xmlElement(nillable = true)
-  @BeanProperty
   var url: String = _
-
-  @BeanProperty
   var shippingHandling: JInteger = _
-
-  @BeanProperty
   var rangeBehaviour: JInteger = _
-
-  @BeanProperty
   var shippingMethod: JInteger = _
 
   // TODO: add in delay. It's wrapped inside a <language> element

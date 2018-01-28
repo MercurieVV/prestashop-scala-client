@@ -62,7 +62,6 @@ import shared._
 case class Currency(
 
                      @xmlElement(required = true)
-                     @BeanProperty
                      var currency: CurrencyElement,
 
                    ) extends Representation {
@@ -86,35 +85,15 @@ case class CurrencyElement(
   // -------------------------------------------------------------------------------------------------------------------
   // Resource-specific fields
   // -------------------------------------------------------------------------------------------------------------------
-
-  @BeanProperty
   var name: String,
-
-  @BeanProperty
   var isoCode: String,
-
-  @BeanProperty
   var isoCodeNum: String,
-
-  @BeanProperty
   var sign: String,
-
-  @BeanProperty
   var blank: JInteger,
-
-  @BeanProperty
   var format: JInteger,
-
-  @BeanProperty
   var decimals: JInteger,
-
-  @BeanProperty
   var conversionRate: JFloat,
-
-  @BeanProperty
   var deleted: JInteger,
-
-  @BeanProperty
   var active: JInteger,
   ) extends PrestaShopIdentity {
   private def this() = this(null, null, null, null, null, null, null, null, null, null)

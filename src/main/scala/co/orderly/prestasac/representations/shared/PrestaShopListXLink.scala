@@ -27,11 +27,9 @@ import co.orderly.narcolepsy.Representation
 @XmlAccessorType(XmlAccessType.FIELD)
  class PrestaShopListXLink(
                                 @xmlAttribute // ID is a custom attribute
-                                @BeanProperty
                                 val id: JLong,
 
                                 @xmlAttribute(namespace = "http://www.w3.org/1999/xlink") // Href is an xlink: attribute
-                                @BeanProperty
                                 val href: String,
                               ) extends Representation {
   private def this() = this(null, null)

@@ -54,7 +54,6 @@ import shared._
 @XmlNameTransformer(classOf[CamelCase2Underscore])
 case class State(
                   @xmlElement(required = true)
-                  @BeanProperty
                   var state: StateElement,
 
                 ) extends Representation {
@@ -72,24 +71,16 @@ case class StateElement(
                          // -------------------------------------------------------------------------------------------------------------------
 
                          // TODO: retrieve the xlink:href as well
-                         @BeanProperty
                          var idZone: PrestaShopXLink, // JLong,
 
                          // TODO: retrieve the xlink:href as well
-                         @BeanProperty
                          var idCountry: PrestaShopXLink, // JLong,
 
                          // -------------------------------------------------------------------------------------------------------------------
                          // Resource-specific fields
                          // -------------------------------------------------------------------------------------------------------------------
-
-                         @BeanProperty
                          var isoCode: String,
-
-                         @BeanProperty
                          var name: String,
-
-                         @BeanProperty
                          var active: JInteger,
 
                        ) extends PrestaShopIdentity {

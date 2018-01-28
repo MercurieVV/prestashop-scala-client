@@ -46,7 +46,6 @@ import shared._
 class Product extends Representation {
 
   @xmlElement(required = true)
-  @BeanProperty
   var product: ProductElement = _
 }
 
@@ -59,53 +58,31 @@ class ProductElement extends PrestaShopTimestampedIdentity {
   // -------------------------------------------------------------------------------------------------------------------
   // XLinks into other resources
   // -------------------------------------------------------------------------------------------------------------------
-
-  @BeanProperty
   var idManufacturer: PrestaShopXLink = _
-
-  @BeanProperty
   var idCategoryDefault: PrestaShopXLink = _
 
   // TODO: add not_filterable attribute
-  @BeanProperty
   var idDefaultCombination: PrestaShopXLink = _
 
   // -------------------------------------------------------------------------------------------------------------------
   // Resource-specific fields
   // -------------------------------------------------------------------------------------------------------------------
-
-  @BeanProperty
   var idSupplier: String = _
-
-  @BeanProperty
   var outOfStock: JInteger = _
 
   // TODO: add in <new>. No idea what data type it should be. But it's nillable
-
-  @BeanProperty
   var cacheDefaultAttribute: JInteger = _
 
   // TODO: add in <id_default_image>. No idea on datatype. Has not_filterable attribute
 
   // TODO: add not_filterable attribute
-  @BeanProperty
   var positionInCategory: JInteger = _
-
-  @BeanProperty
   var manufacturerName: String = _
-
-  @BeanProperty
   var reference: String = _
-
-  @BeanProperty
   var supplierReference: String = _
 
   // TODO: add location. No idea on datatype
-
-  @BeanProperty
   var ean13: String = _
-
-  @BeanProperty
   var upc: String = _
 
   // TODO: add unity. Not sure what it is
@@ -113,79 +90,32 @@ class ProductElement extends PrestaShopTimestampedIdentity {
   // TODO: add id_tax_rules_group
 
   // TODO: add id_color_default
-
-  @BeanProperty
   var minimalQuantity: JInteger = _
-
-  @BeanProperty
   var price: JFloat = _
-
-  @BeanProperty
   var additionalShippingCost: JFloat = _
-
-  @BeanProperty
   var wholesalePrice: JFloat = _
-
-  @BeanProperty
   var onSale: JInteger = _
-
-  @BeanProperty
   var onlineOnly: JInteger = _
-
-  @BeanProperty
   var ecotax: JFloat = _
 
   // TODO: check assumption that <unit_price> is a float (it probably is)
   @xmlElement(nillable = true)
-  @BeanProperty
   var unitPrice: JFloat = _
-
-  @BeanProperty
   var width: JInteger = _
-
-  @BeanProperty
   var height: JInteger = _
-
-  @BeanProperty
   var depth: JInteger = _
-
-  @BeanProperty
   var weight: JInteger = _
-
-  @BeanProperty
   var quantityDiscount: JInteger = _
-
-  @BeanProperty
   var customizable: JInteger = _
-
-  @BeanProperty
   var uploadableFiles: JInteger = _
-
-  @BeanProperty
   var textFields: JInteger = _
-
-  @BeanProperty
   var active: JInteger = _
-
-  @BeanProperty
   var availableForOrder: JInteger = _
-
-  @BeanProperty
   var condition: String = _
-
-  @BeanProperty
   var showPrice: JInteger = _
-
-  @BeanProperty
   var indexed: JInteger = _
-
-  @BeanProperty
   var cacheIsPack: JInteger = _
-
-  @BeanProperty
   var cacheHasAttachment: JInteger = _
-
-  @BeanProperty
   var quantity: JInteger = _
 
   // TODO: add in <meta_description>
