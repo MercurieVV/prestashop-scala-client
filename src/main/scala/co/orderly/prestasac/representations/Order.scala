@@ -13,8 +13,11 @@
 package co.orderly.prestasac.representations
 
 // Java
-import java.lang.{Float => BigDecimal, Integer => JInteger, Long => JLong}
+import java.lang.{Float => JFloat, Integer => JInteger, Long => JLong}
 import java.util.{Collection => JCollection, Date => JDate, List => JList}
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapters
+
+import co.orderly.prestasac.BigDecimalAdapter
 
 // Scala
 import scala.beans.BeanProperty
@@ -107,17 +110,26 @@ case class OrderElement(
 
                          @xmlElement(nillable = true)
                          var giftMessage: String,
+                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
                          var totalDiscounts: BigDecimal,
+                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
                          var totalPaid: BigDecimal,
+                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
                          var totalPaidReal: BigDecimal,
+                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
                          var totalProducts: BigDecimal,
+                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
                          var totalProductsWt: BigDecimal,
+                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
                          var totalShipping: BigDecimal,
+                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
                          var carrierTaxRate: BigDecimal,
+                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
                          var totalWrapping: BigDecimal,
 
                          @xmlElement(nillable = true)
                          var shippingNumber: JLong,
+                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
                          var conversionRate: BigDecimal,
 
                          // -------------------------------------------------------------------------------------------------------------------
@@ -161,6 +173,7 @@ case class OrderRow(
                      var productAttributeId: JLong,
                      var productQuantity: JInteger,
                      var productName: String,
+                     @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
                      var productPrice: BigDecimal
                    ) {
   private def this() = this(0, 0, 0, 0, "", 0)
