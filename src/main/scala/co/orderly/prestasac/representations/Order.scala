@@ -13,7 +13,7 @@
 package co.orderly.prestasac.representations
 
 // Java
-import java.lang.{Float => JFloat, Integer => JInteger, Long => JLong}
+import java.lang.{Float => BigDecimal, Integer => JInteger, Long => JLong}
 import java.util.{Collection => JCollection, Date => JDate, List => JList}
 
 // Scala
@@ -107,18 +107,18 @@ case class OrderElement(
 
                          @xmlElement(nillable = true)
                          var giftMessage: String,
-                         var totalDiscounts: JFloat,
-                         var totalPaid: JFloat,
-                         var totalPaidReal: JFloat,
-                         var totalProducts: JFloat,
-                         var totalProductsWt: JFloat,
-                         var totalShipping: JFloat,
-                         var carrierTaxRate: JFloat,
-                         var totalWrapping: JFloat,
+                         var totalDiscounts: BigDecimal,
+                         var totalPaid: BigDecimal,
+                         var totalPaidReal: BigDecimal,
+                         var totalProducts: BigDecimal,
+                         var totalProductsWt: BigDecimal,
+                         var totalShipping: BigDecimal,
+                         var carrierTaxRate: BigDecimal,
+                         var totalWrapping: BigDecimal,
 
                          @xmlElement(nillable = true)
                          var shippingNumber: JLong,
-                         var conversionRate: JFloat,
+                         var conversionRate: BigDecimal,
 
                          // -------------------------------------------------------------------------------------------------------------------
                          // Associations
@@ -161,7 +161,7 @@ case class OrderRow(
                      var productAttributeId: JLong,
                      var productQuantity: JInteger,
                      var productName: String,
-                     var productPrice: JFloat
+                     var productPrice: BigDecimal
                    ) {
   private def this() = this(0, 0, 0, 0, "", 0)
 }
