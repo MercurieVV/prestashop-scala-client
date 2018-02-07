@@ -115,6 +115,8 @@ case class OrderElement(
                          @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
                          var totalPaid: BigDecimal,
                          @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
+                         var totalPaidTaxIncl: BigDecimal,
+                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
                          var totalPaidReal: BigDecimal,
                          @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
                          var totalProducts: BigDecimal,
@@ -122,6 +124,8 @@ case class OrderElement(
                          var totalProductsWt: BigDecimal,
                          @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
                          var totalShipping: BigDecimal,
+                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
+                         var totalShippingTaxIncl: BigDecimal,
                          @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
                          var carrierTaxRate: BigDecimal,
                          @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
@@ -131,6 +135,10 @@ case class OrderElement(
                          var shippingNumber: JLong,
                          @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
                          var conversionRate: BigDecimal,
+
+                         @xmlElement(nillable = false)
+                         var reference: String,
+
 
                          // -------------------------------------------------------------------------------------------------------------------
                          // Associations
