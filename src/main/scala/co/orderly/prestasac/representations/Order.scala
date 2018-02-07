@@ -147,7 +147,7 @@ case class OrderElement(
                          @xmlElement(required = true)
                          var associations: Associations,
                        ) extends PrestaShopTimestampedIdentity {
-  private def this() = this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
+  private def this() = this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
 }
 
 /**
