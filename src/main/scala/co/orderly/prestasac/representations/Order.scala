@@ -110,30 +110,30 @@ case class OrderElement(
 
                          @xmlElement(nillable = true)
                          var giftMessage: String,
-                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
+                         @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
                          var totalDiscounts: BigDecimal,
-                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
+                         @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
                          var totalPaid: BigDecimal,
-                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
+                         @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
                          var totalPaidTaxIncl: BigDecimal,
-                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
+                         @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
                          var totalPaidReal: BigDecimal,
-                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
+                         @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
                          var totalProducts: BigDecimal,
-                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
+                         @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
                          var totalProductsWt: BigDecimal,
-                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
+                         @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
                          var totalShipping: BigDecimal,
-                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
+                         @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
                          var totalShippingTaxIncl: BigDecimal,
-                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
+                         @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
                          var carrierTaxRate: BigDecimal,
-                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
+                         @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
                          var totalWrapping: BigDecimal,
 
                          @xmlElement(nillable = true)
                          var shippingNumber: JLong,
-                         @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
+                         @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
                          var conversionRate: BigDecimal,
 
                          @xmlElement(nillable = false)
@@ -181,8 +181,9 @@ case class OrderRow(
                      var productAttributeId: JLong,
                      var productQuantity: JInteger,
                      var productName: String,
-                     @xmlJavaTypeAdapter(value=classOf[BigDecimalAdapter])
-                     var productPrice: BigDecimal
+                     @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
+                     var productPrice: BigDecimal,
+                     var idp: JLong
                    ) {
-  private def this() = this(0, 0, 0, 0, "", 0)
+  private def this() = this(0, 0, 0, 0, "", 0, 0)
 }
