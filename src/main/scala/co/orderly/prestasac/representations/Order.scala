@@ -183,7 +183,8 @@ case class OrderRow(
                      var productName: String,
                      @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
                      var productPrice: BigDecimal,
-                     var idp: JLong
+                     var idp: JLong,
+                     var productReference: String
                    ) {
-  private def this() = this(0, 0, 0, 0, "", 0, 0)
+  private def this() = this(0, 0, 0, 0, "", 0, 0, "")
 }
