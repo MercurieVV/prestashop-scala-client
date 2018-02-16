@@ -33,6 +33,7 @@ object PrestaShopApi extends Api {
   val products = resource[Product, ProductList]("products")
   val orders = resource[Order, OrderList]("orders")
   val orderDetails = resource[OrderDetail, Nothing]("order_details")
+  val orderHistories = resource[OrderHistory, Nothing]("order_histories")
 
   // -------------------------------------------------------------------------------------------------------------------
   // Partially defined PrestaShop representations
