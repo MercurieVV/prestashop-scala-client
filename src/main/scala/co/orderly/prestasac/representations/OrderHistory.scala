@@ -51,12 +51,13 @@ case class OrderHistory(
 
 @XmlAccessorType(XmlAccessType.FIELD)
 case class OrderHistoryElement(
-                         var id_employee: PrestaShopXLink, // JLong,
-                         var id_order_state: PrestaShopXLink, // JLong,
-                         var id_order: PrestaShopXLink, // JLong,
-                         @xmlElement(required = true)
+                                override val id: JLong = 0L,
+                                var id_employee: PrestaShopXLink, // JLong,
+                                var id_order_state: PrestaShopXLink, // JLong,
+                                var id_order: PrestaShopXLink, // JLong,
+                                @xmlElement(required = true)
                          @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
                          var dateAdd: JDate
                        ) extends PrestaShopIdentity {
-  private def this() = this(null, null, null, null)
+  private def this() = this(null, null, null, null, null)
 }
