@@ -34,7 +34,7 @@ object PrestaShopApi extends Api {
   val orders = resource[Order, OrderList]("orders")
   val orderDetails = resource[OrderDetail, Nothing]("order_details")
   val orderHistories = resource[OrderHistory, Nothing]("order_histories")
-  val orderCarriers = resource[OrderCarrier, Nothing]("order_carriers")
+  val orderCarriers = resource[OrderCarrier, OrderCarrierList]("order_carriers")
 
   // -------------------------------------------------------------------------------------------------------------------
   // Partially defined PrestaShop representations
