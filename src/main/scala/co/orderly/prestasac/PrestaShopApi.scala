@@ -43,7 +43,7 @@ object PrestaShopApi extends Api {
   // These partially defined PrestaShop representations have Nothing in place
   // of RepresentationWrappers. The plural representations do exist - they just haven't
   // been defined yet in Prestasac (no pressing need - pull request if you need them)
-  val carriers = resource[Carrier, Nothing]("carriers")
+  val carriers = resource[Carrier, CarrierList]("carriers")
   val currencies = resource[Currency, Nothing]("currencies")
   val customers = resource[Customer, Nothing]("customers")
   val addresses = resource[Address, Nothing]("addresses")
