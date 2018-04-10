@@ -37,14 +37,14 @@ import java.lang.{Long => JLong}
 @XmlRootElement(name = "prestashop")
 @XmlAccessorType(XmlAccessType.FIELD)
 case class OrderCarrierList(
-                 var orderCarriers: OrderCarriers
+                 var order_carriers: OrderCarriers
 
                ) extends RepresentationWrapper[PrestaShopListXLink] {
 
   type rtype = PrestaShopListXLink
 
 
-  def toList: List[PrestaShopListXLink] = this.orderCarriers.orderCarrierLinks.toList
+  def toList: List[PrestaShopListXLink] = this.order_carriers.orderCarrierLinks.toList
 
   def fromList(orderCarrierLinks: List[PrestaShopListXLink]) {
     val p = new OrderCarriers()
@@ -57,11 +57,11 @@ case class OrderCarrierList(
 
 
 @XmlType(name = "")
-@XmlRootElement(name = "orderCarriers")
+@XmlRootElement(name = "order_carriers")
 case class OrderCarriers(
                      var orderCarrierLinks: Buffer[PrestaShopListXLink] = ArrayBuffer[PrestaShopListXLink]()
                    ) {
-  @xmlElement(name = "orderCarrier", required = true)
+  @xmlElement(name = "order_carrier", required = true)
   def getOrderCarriers: JList[PrestaShopListXLink] = this.orderCarrierLinks
 
   def setOrderCarriers(orderCarriers: JList[PrestaShopListXLink]) {
