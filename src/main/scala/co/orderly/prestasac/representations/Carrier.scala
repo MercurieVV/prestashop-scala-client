@@ -14,6 +14,7 @@ package co.orderly.prestasac.representations
 
 // Java
 import java.lang.{Integer => JInteger}
+import java.lang.{Long => JLong}
 
 // Scala
 import scala.beans.BeanProperty
@@ -61,7 +62,7 @@ import shared._
 @XmlNameTransformer(classOf[CamelCase2Underscore])
 case class Carrier(
                     @xmlElement(required = true)
-                    var carrier: CarrierElement = _
+                    var carrier: CarrierElement
                   ) extends Representation {
 
   private def this() = this(null)
@@ -77,29 +78,29 @@ case class CarrierElement(
                            // -------------------------------------------------------------------------------------------------------------------
 
                            // None
-
+                           override val id: JLong,
                            // -------------------------------------------------------------------------------------------------------------------
                            // Resource-specific fields
                            // -------------------------------------------------------------------------------------------------------------------
-                           var idTaxRulesGroup: JInteger = _,
+                           var idTaxRulesGroup: JInteger,
 
-                           var deleted: JInteger = _,
-                           var isModule: JInteger = _,
-                           var name: String = _,
-                           var active: JInteger = _,
-                           var isFree: JInteger = _,
+                           var deleted: JInteger,
+                           var isModule: JInteger,
+                           var name: String,
+                           var active: JInteger,
+                           var isFree: JInteger,
 
                            @xmlElement(nillable = true)
-                           var url: String = _,
-                           var shippingHandling: JInteger = _,
-                           var rangeBehaviour: JInteger = _,
-                           var shippingMethod: JInteger = _,
+                           var url: String,
+                           var shippingHandling: JInteger,
+                           var rangeBehaviour: JInteger,
+                           var shippingMethod: JInteger
 
                            // TODO: add in delay. It's wrapped inside a <language> element
                            // @BeanProperty
-                           // var delay: String = _
+                           // var delay: String
 
                          ) extends PrestaShopIdentity {
 
-  private def this() = this(null, null, null, null, null, null, null, null, null, null)
+  private def this() = this(null,null, null, null, null, null, null, null, null, null, null)
 }
