@@ -33,67 +33,73 @@ import marshallers.jaxb.moxy.CamelCase2Underscore
 import shared._
 
 /**
- * The Carrier representation holds the information pertaining to a
- * carrier (i.e. company that delivers orders) in PrestaShop.
- *
- * A typical representation looks like this:
- *
- * <?xml version="1.0" encoding="UTF-8"?>
- * <prestashop xmlns:xlink="http://www.w3.org/1999/xlink">
- *   <carrier>
- *     <id><![CDATA[3]]></id>
- *     <id_tax_rules_group><![CDATA[1]]></id_tax_rules_group>
- *     <deleted><![CDATA[0]]></deleted>
- *     <is_module><![CDATA[0]]></is_module>
- *     <name><![CDATA[Free carrier]]></name>
- *     <active><![CDATA[1]]></active>
- *     <is_free><![CDATA[1]]></is_free>
- *     <url></url>
- *     <shipping_handling><![CDATA[1]]></shipping_handling>
- *     <range_behavior><![CDATA[0]]></range_behavior>
- *     <shipping_method><![CDATA[0]]></shipping_method>
- *     <delay><language id="1" xlink:href="http://www.psychicbazaar.com/api/languages/1"><![CDATA[Delivery next day!]]></language></delay>
- *   </carrier>
- * </prestashop>
- */
+  * The Carrier representation holds the information pertaining to a
+  * carrier (i.e. company that delivers orders) in PrestaShop.
+  *
+  * A typical representation looks like this:
+  *
+  * <?xml version="1.0" encoding="UTF-8"?>
+  * <prestashop xmlns:xlink="http://www.w3.org/1999/xlink">
+  * <carrier>
+  * <id><![CDATA[3]]></id>
+  * <id_tax_rules_group><![CDATA[1]]></id_tax_rules_group>
+  * <deleted><![CDATA[0]]></deleted>
+  * <is_module><![CDATA[0]]></is_module>
+  * <name><![CDATA[Free carrier]]></name>
+  * <active><![CDATA[1]]></active>
+  * <is_free><![CDATA[1]]></is_free>
+  * <url></url>
+  * <shipping_handling><![CDATA[1]]></shipping_handling>
+  * <range_behavior><![CDATA[0]]></range_behavior>
+  * <shipping_method><![CDATA[0]]></shipping_method>
+  * <delay><language id="1" xlink:href="http://www.psychicbazaar.com/api/languages/1"><![CDATA[Delivery next day!]]></language></delay>
+  * </carrier>
+  * </prestashop>
+  */
 @XmlRootElement(name = "prestashop")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlNameTransformer(classOf[CamelCase2Underscore])
-class Carrier extends Representation {
+case class Carrier(
+                    @xmlElement(required = true)
+                    var carrier: CarrierElement = _
+                  ) extends Representation {
 
-  @xmlElement(required = true)
-  var carrier: CarrierElement = _
+  private def this() = this(null)
 }
 
 /**
- * The CarrierElement holds the core fields for the carrier.
- */
+  * The CarrierElement holds the core fields for the carrier.
+  */
 @XmlAccessorType(XmlAccessType.FIELD)
-class CarrierElement extends PrestaShopIdentity {
+case class CarrierElement(
+                           // -------------------------------------------------------------------------------------------------------------------
+                           // XLinks into other resources
+                           // -------------------------------------------------------------------------------------------------------------------
 
-  // -------------------------------------------------------------------------------------------------------------------
-  // XLinks into other resources
-  // -------------------------------------------------------------------------------------------------------------------
+                           // None
 
-  // None
+                           // -------------------------------------------------------------------------------------------------------------------
+                           // Resource-specific fields
+                           // -------------------------------------------------------------------------------------------------------------------
+                           var idTaxRulesGroup: JInteger = _,
 
-  // -------------------------------------------------------------------------------------------------------------------
-  // Resource-specific fields
-  // -------------------------------------------------------------------------------------------------------------------
-  var idTaxRulesGroup: JInteger = _
-  var deleted: JInteger = _
-  var isModule: JInteger = _
-  var name: String = _
-  var active: JInteger = _
-  var isFree: JInteger = _
+                           var deleted: JInteger = _,
+                           var isModule: JInteger = _,
+                           var name: String = _,
+                           var active: JInteger = _,
+                           var isFree: JInteger = _,
 
-  @xmlElement(nillable = true)
-  var url: String = _
-  var shippingHandling: JInteger = _
-  var rangeBehaviour: JInteger = _
-  var shippingMethod: JInteger = _
+                           @xmlElement(nillable = true)
+                           var url: String = _,
+                           var shippingHandling: JInteger = _,
+                           var rangeBehaviour: JInteger = _,
+                           var shippingMethod: JInteger = _,
 
-  // TODO: add in delay. It's wrapped inside a <language> element
-  // @BeanProperty
-  // var delay: String = _
+                           // TODO: add in delay. It's wrapped inside a <language> element
+                           // @BeanProperty
+                           // var delay: String = _
+
+                         ) extends PrestaShopIdentity {
+
+  private def this() = this(null, null, null, null, null, null, null, null, null, null)
 }
