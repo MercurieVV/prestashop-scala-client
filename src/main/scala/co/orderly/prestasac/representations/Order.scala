@@ -60,6 +60,7 @@ case class Order(
   * The OrderElement holds the core fields for the order.
   */
 @XmlAccessorType(XmlAccessType.FIELD)
+@XmlNameTransformer(classOf[CamelCase2Underscore])
 case class OrderElement(
                          // -------------------------------------------------------------------------------------------------------------------
                          // XLinks into other resources
