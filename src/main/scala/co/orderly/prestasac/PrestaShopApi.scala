@@ -22,7 +22,9 @@ import wrappers._
 /**
  * Resource definitions for the Orderly MDM API
  */
-object PrestaShopApi extends Api {
+object PrestaShopApi extends PrestaShopApi {
+}
+class PrestaShopApi extends Api {
 
   // TODO can I define a standard ErrorRepresentation in here?
 
