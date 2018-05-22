@@ -131,6 +131,6 @@ case class CustomerElement(
   // -------------------------------------------------------------------------------------------------------------------
 
   // None
-  ) extends PrestaShopTimestampedIdentity {
+  ) extends PrestaShopTimestampedIdentity with Representation {
   private def this() = this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
 }
