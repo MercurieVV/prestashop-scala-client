@@ -80,6 +80,6 @@ case class OrderCarrierElement(
                                 @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
                                 var date_add: JDate,
 
-                              ) extends PrestaShopIdentity {
+                              ) extends PrestaShopIdentity with Representation {
   private def this() = this(null, null, null, null, null, null, null, null, null)
 }
