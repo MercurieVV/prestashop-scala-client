@@ -18,6 +18,8 @@ import java.lang.{Float => JFloat}
 import java.lang.{Integer => JInteger}
 import java.lang.{Long => JLong}
 
+import co.orderly.prestasac.BigDecimalAdapter
+
 // Scala
 import scala.beans.BeanProperty
 
@@ -91,16 +93,21 @@ class ProductElement extends PrestaShopTimestampedIdentity {
 
   // TODO: add id_color_default
   var minimalQuantity: JInteger = _
-  var price: JFloat = _
-  var additionalShippingCost: JFloat = _
-  var wholesalePrice: JFloat = _
+  @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
+  var price: BigDecimal = _
+  @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
+  var additionalShippingCost: BigDecimal = _
+  @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
+  var wholesalePrice: BigDecimal = _
   var onSale: JInteger = _
   var onlineOnly: JInteger = _
-  var ecotax: JFloat = _
+  @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
+  var ecotax: BigDecimal = _
 
   // TODO: check assumption that <unit_price> is a float (it probably is)
   @xmlElement(nillable = true)
-  var unitPrice: JFloat = _
+  @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
+  var unitPrice: BigDecimal = _
   var width: JInteger = _
   var height: JInteger = _
   var depth: JInteger = _
