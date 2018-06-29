@@ -55,7 +55,7 @@ class Product extends Representation {
  * The ProductElement holds the core fields for the order.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-class ProductElement extends PrestaShopTimestampedIdentity {
+class ProductElement extends PrestaShopTimestampedIdentity with Representation {
 
   // -------------------------------------------------------------------------------------------------------------------
   // XLinks into other resources
