@@ -140,6 +140,14 @@ case class OrderElement(
                          @xmlElement(nillable = false)
                          var reference: String,
 
+                         @xmlElement(nillable = true)
+                         var return_order_id: String,
+                         @xmlElement(nillable = true)
+                         var return_imei: String,
+
+                         @xmlElement(nillable = true)
+                         var transaction_id: String,
+
 
                          // -------------------------------------------------------------------------------------------------------------------
                          // Associations
