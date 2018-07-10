@@ -19,7 +19,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapters
   */
 @XmlRootElement(name = "prestashop")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlNameTransformer(classOf[CamelCase2Underscore])
 case class OrderPayment(
   @xmlElement(required = true)
   var order_payment: OrderPaymentElement
