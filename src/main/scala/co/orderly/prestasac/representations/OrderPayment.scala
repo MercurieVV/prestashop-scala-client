@@ -20,14 +20,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapters
 @XmlRootElement(name = "prestashop")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlNameTransformer(classOf[CamelCase2Underscore])
-case class OrderPayments(
+case class OrderPayment(
   @xmlElement(required = true)
-  var order_payment: OrderPaymentsElement
+  var order_payment: OrderPaymentElement
                         ) extends Representation {
 private def this() = this(null)
 }
 
-case class OrderPaymentsElement(
+case class OrderPaymentElement(
                                  var id_order_payment: JLong,
                                  var order_reference: String,
                                  var transaction_id: String,
