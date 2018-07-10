@@ -26,6 +26,7 @@ case class OrderPayment(
 private def this() = this(null)
 }
 
+@XmlAccessorType(XmlAccessType.FIELD)
 case class OrderPaymentElement(
                                  var id_order_payment: JLong,
                                  var order_reference: String,
