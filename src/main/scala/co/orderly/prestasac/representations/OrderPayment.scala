@@ -34,6 +34,7 @@ case class OrderPaymentElement(
                                  @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
                                  var amount: BigDecimal,
                                  var payment_method: String,
+                                 var transaction_tag: String,
                                ) extends Representation {
-  private def this() = this(null, null, null, null, null)
+  private def this() = this(null, null, null, null, null, null)
 }
