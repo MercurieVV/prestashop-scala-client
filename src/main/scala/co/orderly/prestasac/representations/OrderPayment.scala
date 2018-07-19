@@ -37,5 +37,5 @@ case class OrderPaymentElement(
                                  var transaction_tag: String,
                                  var additional_data: String,
                                ) extends Representation {
-  private def this() = this(null, null, null, null, null, null)
+  private def this() = this(null, null, null, null, null, null, null)
 }
