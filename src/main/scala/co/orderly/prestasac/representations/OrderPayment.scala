@@ -35,6 +35,7 @@ case class OrderPaymentElement(
                                  var amount: BigDecimal,
                                  var payment_method: String,
                                  var transaction_tag: String,
+                                 var additional_data: String,
                                ) extends Representation {
   private def this() = this(null, null, null, null, null, null)
 }
