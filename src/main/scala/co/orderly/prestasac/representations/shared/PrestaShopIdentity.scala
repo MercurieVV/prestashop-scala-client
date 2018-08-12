@@ -16,6 +16,8 @@ package co.orderly.prestasac.representations.shared
 import java.util.{Date => JDate}
 import java.lang.{Long => JLong}
 
+import co.orderly.narcolepsy.Representation
+
 // Scala
 import scala.beans.BeanProperty
 
@@ -30,7 +32,7 @@ import co.orderly.narcolepsy.marshallers.jaxb.types.DateSpaceTimeAdapter
  * The only field shared by all (singular) PrestaShop representations is id
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-trait PrestaShopIdentity {
+trait PrestaShopIdentity extends Representation {
 
   @xmlElement(required = true)
   val id: JLong = 0L
