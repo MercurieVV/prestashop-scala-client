@@ -48,9 +48,9 @@ class CombinationElement(
                           @xmlElement(nillable = false)
                           var idp: JInteger,
                           @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
-                          var wholesale_price: BigDecimal,
+                          var wholesale_price: scala.BigDecimal,
                           @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
-                          var price: BigDecimal,
+                          var price: scala.BigDecimal,
                         ) extends Representation {
   private def this() = this(null, null, null, null, null)
 }
