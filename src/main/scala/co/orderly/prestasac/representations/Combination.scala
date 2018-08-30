@@ -33,7 +33,7 @@ import co.orderly.prestasac.representations.shared._
 @XmlNameTransformer(classOf[CamelCase2Underscore])
 case class Combination(
                         @xmlElement(required = true)
-                        var order_detail: CombinationElement,
+                        var combination: CombinationElement,
 
                       ) extends Representation {
   private def this() = this(null)
@@ -52,5 +52,5 @@ class CombinationElement(
                           @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
                           var price: BigDecimal,
                         ) extends Representation {
-  private def this() = this(null, null, null)
+  private def this() = this(null, null, null, null, null)
 }
