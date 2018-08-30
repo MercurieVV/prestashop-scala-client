@@ -148,6 +148,9 @@ case class OrderElement(
                          @xmlElement(nillable = true)
                          var transaction_id: String,
 
+                         @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
+                         var return_product_price: BigDecimal,
+
 
                          // -------------------------------------------------------------------------------------------------------------------
                          // Associations
@@ -156,7 +159,7 @@ case class OrderElement(
                          @xmlElement(required = true)
                          var associations: Associations,
                        ) extends PrestaShopTimestampedIdentity with Representation {
-  private def this() = this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
+  private def this() = this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
 }
 
 /**
