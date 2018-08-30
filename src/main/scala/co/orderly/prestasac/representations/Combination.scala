@@ -1,4 +1,5 @@
 package co.orderly.prestasac.representations
+
 import java.lang.{Float => BigDecimal, Integer => JInteger, Long => JLong}
 import java.util.{Collection => JCollection, Date => JDate, List => JList}
 
@@ -30,19 +31,26 @@ import co.orderly.prestasac.representations.shared._
 @XmlRootElement(name = "prestashop")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlNameTransformer(classOf[CamelCase2Underscore])
-case class Combination (
-                         @xmlElement(required = true)
-                         var order_detail: CombinationElement,
+case class Combination(
+                        @xmlElement(required = true)
+                        var order_detail: CombinationElement,
 
-                       ) extends Representation {
+                      ) extends Representation {
   private def this() = this(null)
 }
 
 @XmlAccessorType(XmlAccessType.FIELD)
 class CombinationElement(
-                        var id: PrestaShopListXLink,
-                        var reference: String,
-                        var idp: JInteger
-                        )extends Representation {
+                          @xmlElement(nillable = false)
+                          var id: PrestaShopListXLink,
+                          @xmlElement(nillable = false)
+                          var reference: String,
+                          @xmlElement(nillable = false)
+                          var idp: JInteger,
+                          @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
+                          var wholesale_price: BigDecimal,
+                          @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
+                          var price: BigDecimal,
+                        ) extends Representation {
   private def this() = this(null, null, null)
 }
