@@ -99,6 +99,10 @@ case class OrderElement(
 
                          @xmlElement(nillable = true)
                          @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
+                         var estimatedDeliveryDate: JDate,
+
+                         @xmlElement(nillable = true)
+                         @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
                          var deliveryDate: JDate,
                          var valid: JInteger,
 
@@ -159,7 +163,7 @@ case class OrderElement(
                          @xmlElement(required = true)
                          var associations: Associations,
                        ) extends PrestaShopTimestampedIdentity with Representation {
-  private def this() = this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
+  private def this() = this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
 }
 
 /**
