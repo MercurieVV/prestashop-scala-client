@@ -48,12 +48,12 @@ import co.orderly.prestasac.representations.shared._
 @XmlRootElement(name = "prestashop")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlNameTransformer(classOf[CamelCase2Underscore])
-case class Order(
-                  @xmlElement(required = true)
-                  var order: OrderElement,
+case class Order[OE <: OrderElementTrait](
+                                           @xmlElement(required = true)
+                                           var order: OE,
 
-                ) extends Representation {
-  private def this() = this(null)
+                                         ) extends Representation {
+  private def this() = this(null.asInstanceOf[OE])
 }
 
 /**
@@ -65,95 +65,81 @@ case class OrderElement(
                          // -------------------------------------------------------------------------------------------------------------------
                          // XLinks into other resources
                          // -------------------------------------------------------------------------------------------------------------------
-
-                         // TODO: retrieve the xlink:href as well
-                         var idAddressDelivery: PrestaShopXLink, // JLong,
-
-                         // TODO: retrieve the xlink:href as well
-                         var idAddressInvoice: PrestaShopXLink, // JLong,
-
-                         // TODO: retrieve the xlink:href as well
-                         var idCart: PrestaShopXLink, // JLong,
-
-                         // TODO: retrieve the xlink:href as well
-                         var idCurrency: PrestaShopXLink, // JLong,
-
-                         // TODO: retrieve the xlink:href as well
-                         var idLang: PrestaShopXLink, // JLong,
-
-                         // TODO: retrieve the xlink:href as well
-                         var idCustomer: PrestaShopXLink, // JLong,
-
-                         // TODO: retrieve the xlink:href as well
-                         var idCarrier: PrestaShopXLink, // JLong,
+                         override var idAddressDelivery: PrestaShopXLink,
+                         override var idAddressInvoice: PrestaShopXLink,
+                         override var idCart: PrestaShopXLink,
+                         override var idCurrency: PrestaShopXLink,
+                         override var idLang: PrestaShopXLink,
+                         override var idCustomer: PrestaShopXLink,
+                         override var idCarrier: PrestaShopXLink,
 
                          // -------------------------------------------------------------------------------------------------------------------
                          // Resource-specific fields
                          // -------------------------------------------------------------------------------------------------------------------
-                         var module: String,
-                         var invoiceNumber: JLong,
-                         var deliveryNumber: JLong,
+                         override var module: String,
+                         override var invoiceNumber: JLong,
+                         override var deliveryNumber: JLong,
 
                          @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
-                         var invoiceDate: JDate,
-
-                         @xmlElement(nillable = true)
-                         @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
-                         var estimatedDeliveryDate: JDate,
+                         override var invoiceDate: JDate,
 
                          @xmlElement(nillable = true)
                          @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
-                         var deliveryDate: JDate,
-                         var valid: JInteger,
+                         override var estimatedDeliveryDate: JDate,
+
+                         @xmlElement(nillable = true)
+                         @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
+                         override var deliveryDate: JDate,
+                         override var valid: JInteger,
 
                          // TODO: fix current state (missing the attributes)
-                         var currentState: JInteger,
-                         var secureKey: String,
-                         var payment: String,
-                         var recyclable: JInteger,
-                         var gift: JInteger,
+                         override var currentState: JInteger,
+                         override var secureKey: String,
+                         override var payment: String,
+                         override var recyclable: JInteger,
+                         override var gift: JInteger,
 
                          @xmlElement(nillable = true)
-                         var giftMessage: String,
+                         override var giftMessage: String,
                          @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
-                         var totalDiscounts: BigDecimal,
+                         override var totalDiscounts: BigDecimal,
                          @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
-                         var totalPaid: BigDecimal,
+                         override var totalPaid: BigDecimal,
                          @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
-                         var totalPaidTaxIncl: BigDecimal,
+                         override var totalPaidTaxIncl: BigDecimal,
                          @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
-                         var totalPaidReal: BigDecimal,
+                         override var totalPaidReal: BigDecimal,
                          @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
-                         var totalProducts: BigDecimal,
+                         override var totalProducts: BigDecimal,
                          @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
-                         var totalProductsWt: BigDecimal,
+                         override var totalProductsWt: BigDecimal,
                          @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
-                         var totalShipping: BigDecimal,
+                         override var totalShipping: BigDecimal,
                          @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
-                         var totalShippingTaxIncl: BigDecimal,
+                         override var totalShippingTaxIncl: BigDecimal,
                          @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
-                         var carrierTaxRate: BigDecimal,
+                         override var carrierTaxRate: BigDecimal,
                          @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
-                         var totalWrapping: BigDecimal,
+                         override var totalWrapping: BigDecimal,
 
                          @xmlElement(nillable = true)
-                         var shippingNumber: JLong,
+                         override var shippingNumber: JLong,
                          @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
-                         var conversionRate: BigDecimal,
+                         override var conversionRate: BigDecimal,
 
                          @xmlElement(nillable = false)
-                         var reference: String,
+                         override var reference: String,
 
                          @xmlElement(nillable = true)
-                         var return_order_id: String,
+                         override var return_order_id: String,
                          @xmlElement(nillable = true)
-                         var return_imei: String,
+                         override var return_imei: String,
 
                          @xmlElement(nillable = true)
-                         var transaction_id: String,
+                         override var transaction_id: String,
 
                          @xmlJavaTypeAdapter(value = classOf[BigDecimalAdapter])
-                         var return_product_price: BigDecimal,
+                         override var return_product_price: BigDecimal,
 
 
                          // -------------------------------------------------------------------------------------------------------------------
@@ -161,8 +147,8 @@ case class OrderElement(
                          // -------------------------------------------------------------------------------------------------------------------
 
                          @xmlElement(required = true)
-                         var associations: Associations,
-                       ) extends PrestaShopTimestampedIdentity with Representation {
+                         override var associations: Associations,
+                       ) extends OrderElementTrait {
   private def this() = this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
 }
 
