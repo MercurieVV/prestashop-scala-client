@@ -145,7 +145,7 @@ case class OrderElement(
                          @xmlElement(required = true)
                          override var associations: Associations,
                        ) extends OrderElementTrait {
-  private def this() = this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
+  private def this() = this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
 }
 
 /**
