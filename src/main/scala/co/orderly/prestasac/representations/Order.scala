@@ -148,6 +148,7 @@ case class OrderElement(
   private def this() = this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
 }
 
+
 /**
   * Associations is a wrapper around the order's line items (aka order rows).
   */
