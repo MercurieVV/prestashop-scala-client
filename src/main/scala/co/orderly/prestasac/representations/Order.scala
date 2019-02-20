@@ -85,10 +85,6 @@ case class OrderElement(
 
                          @xmlElement(nillable = true)
                          @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
-                         override var estimatedDeliveryDate: JDate,
-
-                         @xmlElement(nillable = true)
-                         @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
                          override var deliveryDate: JDate,
                          override var valid: JInteger,
 

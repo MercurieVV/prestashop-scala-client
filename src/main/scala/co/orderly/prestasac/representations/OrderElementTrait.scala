@@ -40,10 +40,6 @@ trait OrderElementTrait extends PrestaShopTimestampedIdentity with Representatio
 
   @xmlElement(nillable = true)
   @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
-  var estimatedDeliveryDate: JDate
-
-  @xmlElement(nillable = true)
-  @xmlJavaTypeAdapter(classOf[DateSpaceTimeAdapter])
   var deliveryDate: JDate
   var valid: JInteger
 
