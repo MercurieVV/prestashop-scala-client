@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapters
   * Time: 7:15 PM
   * Contacts: email: mercurievvss@gmail.com Skype: 'grobokopytoff' or 'mercurievv'
   */
-trait OrderElementTrait extends PrestaShopTimestampedIdentity with Representation {
+trait OrderElementTrait[AS <: Associations] extends PrestaShopTimestampedIdentity with Representation {
   // -------------------------------------------------------------------------------------------------------------------
   // XLinks into other resources
   // -------------------------------------------------------------------------------------------------------------------
@@ -98,6 +98,6 @@ trait OrderElementTrait extends PrestaShopTimestampedIdentity with Representatio
   // -------------------------------------------------------------------------------------------------------------------
 
   @xmlElement(required = true)
-  var associations: Associations
+  var associations: AS
 
 }

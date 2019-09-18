@@ -48,7 +48,7 @@ import co.orderly.prestasac.representations.shared._
 @XmlRootElement(name = "prestashop")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlNameTransformer(classOf[CamelCase2Underscore])
-case class Order[OE <: OrderElementTrait](
+case class Order[AS <: Associations, OE <: OrderElementTrait[AS]](
                                            @xmlElement(required = true)
                                            var order: OE,
 
@@ -144,7 +144,7 @@ case class OrderElement(
 
                          @xmlElement(required = true)
                          override var associations: Associations,
-                       ) extends OrderElementTrait {
+                       ) extends OrderElementTrait[Associations] {
   private def this() = this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
 }
 
@@ -154,9 +154,14 @@ case class OrderElement(
   */
 @XmlType(name = "")
 case class Associations(
-                         var orderRows: Buffer[OrderRow] = ArrayBuffer[OrderRow]()
-                       ) {
+                         override var orderRows: Buffer[OrderRow] = ArrayBuffer[OrderRow]()
+                       ) extends AssociationsTrait{
+  private def this() = this(ArrayBuffer[OrderRow]())
+}
 
+trait AssociationsTrait{
+
+  var orderRows: Buffer[OrderRow] = ArrayBuffer[OrderRow]()
 
   @xmlElementWrapper(name = "order_rows") // Needed to wrap <order_rows> around each <order_row>
   @xmlElement(name = "order_row", required = true)
@@ -165,8 +170,6 @@ case class Associations(
   def setOrderRows(orderRows: JList[OrderRow]) {
     this.orderRows = orderRows
   }
-
-  private def this() = this(ArrayBuffer[OrderRow]())
 }
 
 /**
@@ -185,5 +188,5 @@ case class OrderRow(
                      var idp: JLong,
                      var productReference: String
                    ) {
-  private def this() = this(0, 0, 0, 0, "", 0, 0, "")
+  private def this() = this(0L, 0L, 0L, 0, "", 0, 0L, "")
 }
