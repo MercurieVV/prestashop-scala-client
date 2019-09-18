@@ -161,7 +161,7 @@ case class Associations(
 
 trait AssociationsTrait{
 
-  var orderRows: Buffer[OrderRow] = ArrayBuffer[OrderRow]()
+  var orderRows: Buffer[OrderRow]
 
   @xmlElementWrapper(name = "order_rows") // Needed to wrap <order_rows> around each <order_row>
   @xmlElement(name = "order_row", required = true)
