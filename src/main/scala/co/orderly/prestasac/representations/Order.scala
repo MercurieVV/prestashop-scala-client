@@ -48,7 +48,7 @@ import co.orderly.prestasac.representations.shared._
 @XmlRootElement(name = "prestashop")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlNameTransformer(classOf[CamelCase2Underscore])
-case class Order[AS <: Associations, OE <: OrderElementTrait[AS]](
+case class Order[AS <: AssociationsTrait, OE <: OrderElementTrait[AS]](
                                            @xmlElement(required = true)
                                            var order: OE,
 
